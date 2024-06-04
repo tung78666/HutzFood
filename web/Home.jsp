@@ -1,166 +1,195 @@
 <%-- 
     Document   : Home
-    Created on : Mar 1, 2024, 5:13:44 PM
-    Author     : Dan09
+    Created on : May 17, 2023, 8:04:59 PM
+    Author     : asus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home_Lib</title>
-        <!-- bootstrap css -->
-        <link rel="stylesheet" href="./assets/css/bootstrap.css"/>
-        <!-- style css -->
-        <link rel="stylesheet" href="assets/css/bootstrap-grid.css">
-        <!-- Responsive-->
-        <link rel="stylesheet" href="assets/css/bootstrap-reboot.css">
-        <!-- fevicon -->
-        <link rel="icon" href="images/f-icon.png" type="image/gif" />
-        <style>
-            #banner{
-                position: relative;
-                overflow: hidden;
-                z-index: 0;
-            }
-            #upper-con {
-                display: flex;
-                width: 80%;
-                padding: 10px;
-                background: lightgrey;
-                box-sizing: border-box;
-                border-collapse: collapse;
-                border: 2px solid;
-                border-radius: 20px;
-                z-index: 1;
-                position: absolute;
-                top: 300px;
-                left: 140px;
-            }
+        <title>Home Screen</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            upper-Statement{
-                font-size: 2.6rem;
-                line-height: 1.1;
-                font-weight: 300;
-                margin: 0px 0px 2rem;
-            }
-            #container{
-                display: flex;
-                max-width: 100%;
-                height: auto;
-                margin: 0 auto;
-            }
-            #main-image{
-                display: flex;
-                width: 100%;
-                height: 100%;
-            }
-            #booklist{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 
-            }
-            #tag-1{
-                display: flex;
-                width: fit-content;
-                padding: 10px;
-                background: lightgrey;
-                box-sizing: border-box;
-                border-collapse: collapse;
-                border: 2px solid;
-                border-radius: 20px;
-                z-index: 1;
-                position: relative;
-                left: 45%;
-            }
-        </style>
+        <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="css/animate.css">
+
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+
+        <link rel="stylesheet" href="css/aos.css">
+
+        <link rel="stylesheet" href="css/ionicons.min.css">
+
+        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+        <link rel="stylesheet" href="css/flaticon.css">
+        <link rel="stylesheet" href="css/icomoon.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
-    <body style="background-color: #3a5e71">
-        <jsp:include page="Header.jsp" />
-        <div id="banner">
-            <img src="images/Home-backgroud.png" style="width: 100% "/>
-            <table id="upper-con">
-                <tr >
-                    <td rowspan="2" id="container" style="">
-                        <img id="main-image" alt="Library Logo" src="images/main-icon.png" style="background-color: #f5f5f7;border-radius: 25px">
-                    </td>
-                    <td style="border-collapse: collapse;border-right: 2px solid;border-left: 2px solid">
-                        <h1 id="upper-Statement" style="display: flex;">
-                            <p><strong>The ASE</strong>(All Seeing EYES) is a non-profit
-                                library of your needs for all kind of purpose no restricted(As long as the Interpol doesn't care).
-                            </p>
-                        </h1>
-                        <form class="" role="search" style="display: flex;flex-direction: row" action="Home" method="post">
-                            
-                            <input class="form-control" style="" type="search" placeholder="Search" aria-label="Search" name="SearchBar">
-                            <button class="btn btn-outline-success bg-info" style="color: background ;"  type="submit">Search</button>
-                            <div>
-                                <input type="radio" name="searchBY" value="Name" checked/>Search Name<br/>
-                                <input type="radio" name="searchBY" value="ID" />Search ID
-                            </div>
-                        </form>
-                    </td>
-                    <td rowspan="2" id="container" style="">
-                        <img id="main-image" alt="Library Logo" src="images/main-icon.png" style="background-color: #f5f5f7;border-radius: 25px">
-                    </td>
-                </tr>
-            </table>
-            <div id="tag-1">
-                <h1 style=";text-align: center;">Feature</h1>
-            </div>
-            <div id="booklist">
-
-                <c:forEach items="${requestScope.FeatureBooks}" var="b">
-                    <div style="padding-bottom: 25px;">
-                        <div class="card" style="width: 18rem;word-wrap: break-word;overflow-wrap: break-word;">
-                            <img src="${b.getCoverPath()}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">${b.getTitle()}</h5>
-                                <p class="card-text">
-                                    <c:if test="${b.getBriefly()==null}">
-                                        Null
-                                    </c:if>
-                                    <c:if test="${b.getBriefly()!=null}">
-                                        ${b.getBriefly()}
-                                    </c:if>    
-                                </p>
-                                <form action="DetailServlet" method="post">
-                                    <button  class="btn btn-primary" type="submit" name="BID" value="${b.getBookID()}" >Details</button>
-                                </form>
-                            </div>
+    <body>
+        <jsp:include page="header.jsp"/>      
+        <section class="home-slider owl-carousel">
+            <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+                        <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                            <span class="subheading">Welcome</span>
+                            <h1 class="mb-4">To HUTZFOOD</h1>
+                            <p class="mb-4 mb-md-5"></p>
+                            <p><a href="ProductLists"
+                                  class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                         </div>
                     </div>
-                </c:forEach>
+                </div>
             </div>
-            <div id="tag-1">
-                <h1 style=";text-align: center;">New Books</h1>
-            </div>
-            <div id="booklist">
 
-                <c:forEach items="${requestScope.NewBooks}" var="b">
-                    <div style="padding-bottom: 25px;">
-                        <div class="card" style="width: 18rem;word-wrap: break-word;overflow-wrap: break-word;">
-                            <img src="${b.getCoverPath()}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">${b.getTitle()}</h5>
-                                <p class="card-text">
-                                    <c:if test="${b.getBriefly()==null}">
-                                        Null
-                                    </c:if>
-                                    <c:if test="${b.getBriefly()!=null}">
-                                        ${b.getBriefly()}
-                                    </c:if>    
-                                </p>
-                                <form action="DetailServlet" method="post">
-                                    <button  class="btn btn-primary" type="submit" name="BID" value="${b.getBookID()}" >Details</button>
-                                </form>
+            <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                        <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                            <span class="subheading">Welcome</span>
+                            <h1 class="mb-4">To HUTZFOOD</h1>
+                            <p class="mb-4 mb-md-5"></p>
+                            <p><a href="ProductLists"
+                                  class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                        <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                            <span class="subheading">Welcome</span>
+                            <h1 class="mb-4">To HUTZFOOD</h1>
+                            <p class="mb-4 mb-md-5"></p>
+                            <p><a href="ProductLists"
+                                  class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ftco-about d-md-flex">
+            <div class="one-half img" style="background-image: url(images/about.jpg);"></div>
+            <div class="one-half ftco-animate">
+                <div class="overlap">
+                    <div class="heading-section ftco-animate ">
+                        <span class="subheading">Discover</span>
+                        <h2 class="mb-4">Our Story</h2>
+                    </div>
+                    <div>
+                        <p>ISP team LN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5 pb-3">
+                    <div class="col-md-7 heading-section ftco-animate text-center">
+                        <span class="subheading">Discover</span>
+                        <h2 class="mb-4">NEW PRODUCT</h2>
+                        <p>We are very excited to introduce the latest products to you. 
+                            Immerse yourself in the diverse and sophisticated world of coffee, 
+                            we offer the most unique and interesting selections</p>
+                    </div>
+                </div>
+                <div class="row">     
+                    <c:forEach var="p" items="${plist}">
+                        <div class="col-md-3">
+                            <div class="menu-entry"> 
+                                <a href="./ProductDetails?pid=${p.getId()}&mode=0" class="img" style="background-image: url(${p.getImage()});"></a>
+                                <div class="text text-center pt-4">
+                                    <h3 class="place-heading"" href="./ProductDetails?pid=${p.getId()}&mode=0" class="pr-name">${p.getName()}</a></h3>
+                                    <div class="place-price">
+                                        <p style="color: white;" class="currencySymbol">Price: <span class="priceSpan">${p.getPrice()}</span>đ</p>
+                                    </div>               
+                                    <p><a href="./ProductDetails?pid=${p.getId()}&mode=0" class="btn btn-primary btn-outline-primary">Order</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </div>
+        </section>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5 pb-3">
+                    <div class="col-md-7 heading-section ftco-animate text-center">
+                        <span class="subheading">Discover</span>
+                        <h2 class="mb-4">Best ISP Selling</h2>
+                        <p>Here, we would like to introduce you to the best-selling products, bringing you great and memorable coffee experiences.</p>
+                    </div>
+                </div>
+                <div class="row">     
+                    <c:forEach var="p" items="${plist1}">
+                        <div class="col-md-3">
+                            <div class="menu-entry"> 
+
+                                <a href="./ProductDetails?pid=${p.getId()}&mode=0" class="img" style="background-image: url(${p.getImage()});"></a>
+                                <div class="text text-center pt-4">
+                                    <h3 class="place-heading"" href="./ProductDetails?pid=${p.getId()}&mode=0" class="pr-name">${p.getName()}</a></h3>
+
+                                    <div class="place-price">
+                                        <p style="color: white;" class="currencySymbol">Price: <span class="priceSpan">${p.getPrice()}</span>đ</p>
+                                    </div>               
+                                    <p><a href="./ProductDetails?pid=${p.getId()}&mode=0" class="btn btn-primary btn-outline-primary">Order</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </section>
+
+        <jsp:include page="Footer.jsp"/>    
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/aos.js"></script>
+        <script src="js/jquery.animateNumber.min.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/jquery.timepicker.min.js"></script>
+        <script src="js/scrollax.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="js/google-map.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            var priceSpans = document.querySelectorAll(".priceSpan");
+
+            priceSpans.forEach(function (span) {
+                var price = parseFloat(span.textContent);
+                var formattedPrice = price.toFixed(3); // Định dạng giá trị với 3 số 0 sau dấu chấm
+                span.textContent = formattedPrice;
+            });
+        </script>
     </body>
 </html>
