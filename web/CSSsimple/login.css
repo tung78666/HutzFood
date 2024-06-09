@@ -78,15 +78,37 @@ body{
     color: #fff;
     font-weight: 600;
 }
+
+/*Div dat o ben trai*/
+.labelRemem{
+    color: #fff;
+    display: flex;
+    float: left;
+}
+
+.labelRemem input {
+    margin-right: 3px;
+}
+
+.labelRemem a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.labelRemem a:hover{
+    text-decoration: underline;
+    color: red;
+}
+
 .forget{
     color: #fff;
     display: flex;
-    float: right; 
+    float: right;
 }
 
 .forget label input{
     margin-right: 3px;
-    
+
 }
 .forget label a{
     color: #fff;
@@ -94,5 +116,5 @@ body{
 }
 .forget label a:hover{
     text-decoration: underline;
-    color: orange; 
+    color: orange;
 }
