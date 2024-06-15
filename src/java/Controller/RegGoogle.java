@@ -6,6 +6,7 @@ package Controller;
 
 import DAO.MD5;
 import DAO.UserDAO;
+import Model.Role;
 import Model.User;
 import Model.UserGoogleDto;
 import com.google.gson.Gson;
@@ -17,6 +18,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
@@ -32,7 +35,7 @@ import org.apache.http.client.fluent.Form;
  *
  * @author Dan09
  */
-public class LoginGoogle extends HttpServlet {
+public class RegGoogle extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,38 +49,39 @@ public class LoginGoogle extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        if (request.getParameter("error") != null) {
-            if (request.getParameter("error").equals("access_denied")) {
-                request.setAttribute("mess", "Failed to login with Google");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
-        }
+        UserDAO udao = new UserDAO();
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
         String accessToken = getToken(code);
-        UserGoogleDto user = getUserInfo(accessToken);
-        User userI = verifyUser(user);
+        UserGoogleDto userG = getUserInfo(accessToken);
+        User userI = verifyUser(userG);
+        MD5 md5 = new MD5();
         if (userI != null) {
-            System.out.println("User is verified: " + user);
-
-            //IF found then go to the page base on user role
-            switch (userI.getRole().getId()) {
-                case 1:
-                    session.setAttribute("account", userI);
-                    response.sendRedirect("AdminDashbord");
-                    break;
-                case 2:
-                    session.setAttribute("account", userI);
-                    response.sendRedirect("SellerDashboard");
-                    break;
-                case 3:
-                    session.setAttribute("account", userI);
-                    response.sendRedirect("Home");
-                    break;
-            }
+            request.setAttribute("messregis", "User existed!!!");
+//            request.getRequestDispatcher("Register.jsp").forward(request, response);
         } else {
-            System.out.println("User verification failed: " + user);
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            try{
+                udao.regUser(userG.getName(), userG.getEmail(), md5.getMd5(generateRandomString(8)), new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"), null);
+            }catch(Exception e){
+                
+            }
+            udao.updateUserbyStatus(userG.getEmail(), 1);
+//                    User u = new User();
+//                    u.setName(name);
+//                    u.setEmail(email);
+//                    u.setPassword(pass);
+//                    u.setRole(new Role(3));
+//                    request.getSession().setAttribute("newuser", u);
+            ArrayList<User> userList = udao.getAllUser();
+            User userII = userList.stream()
+                    .filter(user -> user.getEmail().equals(userG.getEmail())
+                    && user.getUserStatus().getId() == 1
+                    )
+                    .findFirst().orElse(null);
+//            session.setAttribute("account", userII);
+//            response.sendRedirect("Home");
+            session.setAttribute("AccGG", userII);
+            response.sendRedirect("ChangePasswordGG.jsp");
         }
     }
 
@@ -86,7 +90,7 @@ public class LoginGoogle extends HttpServlet {
         String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
                 .bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
                         .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
-                        .add("redirect_uri", Constants.GOOGLE_REDIRECT_URI1).add("code", code)
+                        .add("redirect_uri", Constants.GOOGLE_REDIRECT_URI2).add("code", code)
                         .add("grant_type", Constants.GOOGLE_GRANT_TYPE).build())
                 .execute().returnContent().asString();
 
@@ -100,11 +104,11 @@ public class LoginGoogle extends HttpServlet {
         String response = Request.Get(link).execute().returnContent().asString();
 
         UserGoogleDto googlePojo = new Gson().fromJson(response, UserGoogleDto.class);
-
         return googlePojo;
     }
 
     private User verifyUser(UserGoogleDto userGG) {
+        System.out.println(userGG);
         UserDAO udao = new UserDAO();
         MD5 md5 = new MD5();
         ArrayList<User> userList = udao.getAllUser();
@@ -114,6 +118,20 @@ public class LoginGoogle extends HttpServlet {
                 )
                 .findFirst().orElse(null);
         return userI;
+    }
+
+    public static String generateRandomString(int length) {
+        // Define the set of characters that can be included in the random string.
+        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        // Create a secure random number generator.
+        SecureRandom random = new SecureRandom();
+        //Create a StringBuilder that take in the length user want
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            sb.append(CHARACTERS.charAt(index));
+        }
+        return sb.toString();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

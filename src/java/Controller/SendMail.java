@@ -52,10 +52,10 @@ public class SendMail extends HttpServlet {
         String host = "smtp.gmail.com";
 //        String user = "thegalaxy2308@gmail.com";
 //        String password = "ollvprlecgkrgzbf";
-//        String user = "quocnt78666@gmail.com";
-//        String password = "123cotienganh";
-        String user = "tranngocquyat9@gmail.com";
-        String password = "scfgcpgkobobefoh";
+        String user = "ducnthe181789@fpt.edu.vn";
+        String password = "esnz rnng nhjb oywq";
+//        String user = "tranngocquyat9@gmail.com";
+//        String password = "scfgcpgkobobefoh";
 
         // Create properties object for the mail session
         Properties props = new Properties();
