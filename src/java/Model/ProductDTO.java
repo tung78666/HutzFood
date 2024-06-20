@@ -10,10 +10,12 @@ import java.util.Objects;
  *
  * @author kienb
  */
+
 public class ProductDTO {
     private Product product;
     private ProductSize productSize;
     private int quantity;
+    private User user;
 
     public ProductDTO() {
     }
@@ -23,13 +25,13 @@ public class ProductDTO {
         this.productSize = productSize;
     }
 
-    public ProductDTO(Product product, ProductSize productSize, int quantity) {
+    public ProductDTO(Product product, ProductSize productSize, int quantity, User user) {
         this.product = product;
         this.productSize = productSize;
         this.quantity = quantity;
+        this.user = user;
     }
 
-    
     public Product getProduct() {
         return product;
     }
@@ -53,8 +55,14 @@ public class ProductDTO {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public int hashCode() {
@@ -89,6 +97,5 @@ public class ProductDTO {
         }
         return Objects.equals(this.productSize.getId(), other.productSize.getId());
     }
-    
-    
+
 }

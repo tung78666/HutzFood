@@ -133,7 +133,7 @@ public class OrderDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt(2));
+                User user = new UserDAO().getUserById(rs.getInt(2));
                 list.add(new Order(rs.getInt(1), user, rs.getString(3), new OrderStatus(rs.getInt(10), rs.getString(11)), rs.getInt(5), rs.getTimestamp(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
             }
@@ -150,7 +150,7 @@ public class OrderDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt(2));
+                User user = new UserDAO().getUserById(rs.getInt(2));
                 list.add(new Order(rs.getInt(1), user, rs.getString(3), new OrderStatus(rs.getInt(10), rs.getString(11)), rs.getInt(5), rs.getTimestamp(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
             }
@@ -196,7 +196,7 @@ public class OrderDAO extends DBContext {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt(2));
+                User user = new UserDAO().getUserById(rs.getInt(2));
                 list.add(new Order(rs.getInt(1), user, rs.getString(3), new OrderStatus(rs.getInt(10), rs.getString(11)), rs.getInt(5), rs.getTimestamp(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
             }
@@ -213,7 +213,7 @@ public class OrderDAO extends DBContext {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt(2));
+                User user = new UserDAO().getUserById(rs.getInt(2));
                 return (new Order(rs.getInt(1), user, rs.getString(3), new OrderStatus(rs.getInt(10), rs.getString(11)), rs.getInt(5), rs.getTimestamp(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
             }
@@ -223,26 +223,35 @@ public class OrderDAO extends DBContext {
         return null;
     }
 
-    public ArrayList<ProductDTO> getAllProducts(String id) {
-        ArrayList<ProductDTO> list = new ArrayList<>();
-        String sql = "select * from OrderDetail od join Product p on od.product_id = p.product_id where od.order_id = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, Integer.parseInt(id));
-            ResultSet rs = ps.executeQuery();
-            ProductDAO pdo = new ProductDAO();
-            ProductSizeDao pdSizeDAO = new ProductSizeDao();
-            while (rs.next()) {
-                Product p = pdo.getProductById(rs.getInt(3));
-                ProductSize pSize = pdSizeDAO.getProductSizeById(rs.getInt(6));
-                int quantity = rs.getInt(5);
-                ProductDTO productDTO = new ProductDTO(p, pSize, quantity);
-                list.add(productDTO);
-            }
-        } catch (Exception e) {
+    public ArrayList<ProductDTO> getAllProducts(String orderId) {
+    ArrayList<ProductDTO> list = new ArrayList<>();
+    String sql = "SELECT od.*, o.user_id FROM OrderDetail od " +
+                 "JOIN [Order] o ON od.order_id = o.order_id " +
+                 "WHERE od.order_id = ?";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, Integer.parseInt(orderId));
+        ResultSet rs = ps.executeQuery();
+        ProductDAO pdo = new ProductDAO();
+        ProductSizeDao pdSizeDAO = new ProductSizeDao();
+        while (rs.next()) {
+            int productId = rs.getInt("product_id");
+            Product p = pdo.getProductById(productId);
+            int productSizeId = rs.getInt("productSize_id");
+            ProductSize pSize = pdSizeDAO.getProductSizeById(productSizeId);
+            int quantity = rs.getInt("quantity");
+            // Assuming ProductDTO has a constructor that accepts Product, ProductSize, quantity, and user_id
+            int userId = rs.getInt("user_id");
+            User user= new UserDAO().getUserById(userId);
+            ProductDTO productDTO = new ProductDTO(p, pSize, quantity, user);
+            list.add(productDTO);
         }
-        return list;
+    } catch (Exception e) {
+        e.printStackTrace(); // Better to log the exception
     }
+    return list;
+}
+
 
     public ArrayList<Order> getOrderByDate(Date fdate, Date sdate) {
         ArrayList<Order> list = new ArrayList<>();
@@ -253,7 +262,7 @@ public class OrderDAO extends DBContext {
             ps.setDate(2, (java.sql.Date) sdate);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt(2));
+                User user = new UserDAO().getUserById(rs.getInt(2));
                 list.add(new Order(rs.getInt(1), user, rs.getString(3), new OrderStatus(rs.getInt(10), rs.getString(11)), rs.getInt(5), rs.getTimestamp(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
             }

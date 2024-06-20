@@ -16,7 +16,7 @@ public class ProductSizeDao extends DBContext {
 
     public ProductSize getProductSizeById(int id) {
         String sql = " SELECT *\n"
-                + "  FROM [SWP391].[dbo].[ProductSize] where productSize_id = ?";
+                + "  FROM [HutzFood].[dbo].[ProductSize] where productSize_id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);

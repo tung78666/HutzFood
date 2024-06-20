@@ -14,15 +14,17 @@ public class UserGoogleDto {
     private String name;
     private String email;
     private String password;
+    private boolean verified_email;
 
     public UserGoogleDto() {
     }
 
-    public UserGoogleDto(String id, String name, String email, String password) {
+    public UserGoogleDto(String id, String name, String email, String password, boolean verified_email) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.verified_email = verified_email;
     }
 
     public String getId() {
@@ -57,10 +59,19 @@ public class UserGoogleDto {
         this.password = password;
     }
 
+    public boolean isVerified_email() {
+        return verified_email;
+    }
+
+    public void setVerified_email(boolean verified_email) {
+        this.verified_email = verified_email;
+    }
+
     @Override
     public String toString() {
-        return "UserGoogleDto{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + '}';
+        return "UserGoogleDto{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", verified_email=" + verified_email + '}';
     }
+
     
-    
+
 }

@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author asus
@@ -16,6 +18,10 @@ public class User {
     private Role role;
     private UserStatus userStatus;
     private double point; 
+    private Date DOB; 
+    private String Phone; 
+    private String Location1; 
+    private String Location2; 
 
     public User() {
     }    
@@ -24,7 +30,7 @@ public class User {
         this.name = name;
     }
 
-    public User(int id, String name, String email, String password, Role role, UserStatus userStatus, double point) {
+    public User(int id, String name, String email, String password, Role role, UserStatus userStatus, double point, Date DOB, String Phone, String Location1, String Location2) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -32,30 +38,10 @@ public class User {
         this.role = role;
         this.userStatus = userStatus;
         this.point = point;
-    } 
-
-    public User(String name, String email, Role role) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
-    }
-
-    public User(String name, Role role) {
-        this.name = name;
-        this.role = role;
-    }
-
-    public User(int id, String name, String email, Role role, UserStatus userStatus, double point) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.userStatus = userStatus;
-        this.point = point;
-    }
-     
-    public User(int id) {
-        this.id = id;
+        this.DOB = DOB;
+        this.Phone = Phone;
+        this.Location1 = Location1;
+        this.Location2 = Location2;
     }
 
     public int getId() {
@@ -98,6 +84,14 @@ public class User {
         this.role = role;
     }
 
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
+
     public double getPoint() {
         return point;
     }
@@ -106,12 +100,36 @@ public class User {
         this.point = point;
     }
 
-    public UserStatus getUserStatus() {
-        return userStatus;
+    public Date getDOB() {
+        return DOB;
     }
 
-    public void setUserStatus(UserStatus userStatus) {
-        this.userStatus = userStatus;
+    public void setDOB(Date DOB) {
+        this.DOB = DOB;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
+    }
+
+    public String getLocation1() {
+        return Location1;
+    }
+
+    public void setLocation1(String Location1) {
+        this.Location1 = Location1;
+    }
+
+    public String getLocation2() {
+        return Location2;
+    }
+
+    public void setLocation2(String Location2) {
+        this.Location2 = Location2;
     }
     
 }
