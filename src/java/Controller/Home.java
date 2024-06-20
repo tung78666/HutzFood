@@ -6,9 +6,11 @@ package Controller;
 
 import DAO.ProductDAO;
 import DAO.ProductSizeDao;
+import DAO.UserDAO;
 import Model.Product;
 import Model.ProductDTO;
 import Model.ProductSize;
+import Model.User;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -41,42 +43,49 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 //        try ( PrintWriter out = response.getWriter()) {
-            ProductDAO pdao = new ProductDAO();
-            ProductSizeDao pdsizeDAO = new ProductSizeDao();
-            ArrayList<Product> plist = pdao.getProduct("", "", 1, "1");
-            ArrayList<Product> plist2 = pdao.getProduct("2", "", 1, "1");
-            ArrayList<Product> plist1 = pdao.getTopSelling();
-            request.setAttribute("plist", plist);
-            request.setAttribute("plist1", plist1);
-            request.setAttribute("plist2", plist2);
-            Cookie[] cookies = request.getCookies();
-            List<ProductDTO> map = new ArrayList<>();
-            if(cookies != null){
-                for (Cookie i : cookies) {
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("account");
+        ProductDAO pdao = new ProductDAO();
+        ProductSizeDao pdsizeDAO = new ProductSizeDao();
+        ArrayList<Product> plist = pdao.getProduct("", "", 1, "1");
+        ArrayList<Product> plist2 = pdao.getProduct("2", "", 1, "1");
+        ArrayList<Product> plist1 = pdao.getTopSelling();
+        request.setAttribute("plist", plist);
+        request.setAttribute("plist1", plist1);
+        request.setAttribute("plist2", plist2);
+        Cookie[] cookies = request.getCookies();
+        List<ProductDTO> map = new ArrayList<>();
+        if (cookies != null) {
+            for (Cookie i : cookies) {
                 if (i.getName().equals("map")) {
                     String value = i.getValue();
                     String[] list = value.split("/");
-                    for(int idx = 0;idx < list.length;idx+= 3){
+                    for (int idx = 0; idx < list.length; idx += 4) {
                         Product p = pdao.getProductById(Integer.parseInt(list[idx]));
                         ProductSize pdsize = null;
-                        if(!list[idx+1].equals("none")){
-                           pdsize = pdsizeDAO.getProductSizeById(Integer.parseInt(list[idx+1])); 
-                        }                       
-                        int quantity = Integer.parseInt(list[idx+2]);
-                        ProductDTO pdto = new ProductDTO(p, pdsize, quantity);
-                        map.add(pdto);
+                        if (!list[idx + 1].equals("none")) {
+                            pdsize = pdsizeDAO.getProductSizeById(Integer.parseInt(list[idx + 1]));
+                        }
+                        int quantity = Integer.parseInt(list[idx + 2]);
+                        User user = new UserDAO().getUserById(Integer.parseInt(list[idx + 3]));
+                        //Check if user logouted
+                        if (u != null) {
+                            //Check if this cart is for the right person cart
+                            if (u.getId() == user.getId()) {
+                                ProductDTO pdto = new ProductDTO(p, pdsize, quantity, user);
+                                map.add(pdto);
+                            }
+                        }
                     }
                 }
             }
-            }
-            HttpSession session = request.getSession();
-            session.setAttribute("map", map);
-            request.getRequestDispatcher("Home.jsp").forward(request, response);
+        }
+        session.setAttribute("map", map);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
 
 //        } catch (Exception e) {
 //
 //        }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
