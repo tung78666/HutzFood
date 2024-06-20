@@ -39,30 +39,22 @@
     </head>
 
     <body>
-        <jsp:include page="header.jsp"/>  
-        <!-- END nav -->
-
-        <section class="home-slider owl-carousel">
-
-            <div class="slider-item" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row slider-text justify-content-center align-items-center">
-
-                        <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                            <h1 class="mb-3 mt-5 bread">Cart</h1>
-                            <p class="breadcrumbs"><span class="mr-2"><a href="Home">Home</a></span> <span>Cart</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="ftco-section ftco-cart">
+        <jsp:include page="header.jsp"/> 
+        <section class="ftco-section ftco-cart" id="cartCont">
             <div class="container">
-                <div class="row">
+                <div class="row" id="cartTable">
                     <div class="col-md-12 ftco-animate">
+                        <div id="cartHeader">
+                            <div class="text-center ftco-animate">
+                                <tr>
+                                <h1 class="bread" style="padding-top: 10px">Cart</h1>
+                                </tr>
+                                <tr>
+                                <p class="breadcrumbs"><span class=""><a href="Home">Home</a></span><span> < Cart</span>
+                                </p>
+                                </tr>
+                            </div>
+                        </div>
                         <div class="cart-list">
                             <table class="table">
                                 <thead class="thead-primary">
@@ -106,20 +98,31 @@
                     </div>
                 </div>
                 <p style="color: red" >${mess}</p>
-                <div class="row justify-content-end">
-                    <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
-                        <div class="cart-total mb-3">
-                            <h3>Totals Amount</h3>
-                            <p class="d-flex total-price">
-                                <span>Total</span>
-                                <span class="priceSpan">${requestScope.total}00đ</span>
-                            </p>
-                        </div>
+                <form action="order" method="get">
+                    <div class="row justify-content-end" >
+                        <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate" id="checkOut4Cart">
+                            <div class="cart-total mb-3">
+                                <h3 id="headingcO">Totals Amount</h3>
+                                <p class="d-flex total-price">
+                                    <span>Total</span>
+                                    <span class="priceSpan">${requestScope.total}00đ</span>
+                                </p>
+                                <label class="labelRemem" >
+                                    <c:if test="${sessionScope['account'].getPoint() == 0}">
+                                        <input type="number" disabled name="discount" value="0" style="cursor: pointer;" /> 
+                                    </c:if>
+                                    <c:if test="${sessionScope['account'].getPoint() != 0}">
+                                        <input type="number" min="0" max="${sessionScope.account.getPoint()}" value="0" name="discount"style="cursor: pointer;" /> 
+                                    </c:if>
+                                    <a style="cursor: pointer;" ${sessionScope.account.getPoint() eq 0 ?'disabled':''}>Use Points</a>
+                                </label>
+                            </div>
                             <!--order-->
-                        <p class="text-center"><a href="" class="btn btn-primary py-3 px-4">Proceed to
-                                Checkout</a></p>
+                            <p class="text-center"><input type="submit" class="btn btn-primary py-3 px-4" value="Proceed to
+                                    Checkout"/></p>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
 
@@ -152,12 +155,32 @@
         <script src="js/google-map.js"></script>
         <script src="js/main.js"></script>
         <script type="text/javascript">
-        function updateCart(i) {
-            var value = $('#' + i).val();
-            window.location.href = "${pageContext.request.contextPath}/updateCart?idx=" + i + "&quantity=" + value;
-         }
-        </script>
+                                                        function updateCart(i) {
+                                                            var value = $('#' + i).val();
+                                                            window.location.href = "${pageContext.request.contextPath}/updateCart?idx=" + i + "&quantity=" + value;
+                                                        }
 
+        </script>
+        <style>
+            #cartCont{
+                padding-top: 100px;
+            }
+            #cartHeader{
+                display: flex;
+                justify-content: center;
+            }
+            #checkOut4Cart{
+                background-color: rgba(128, 128, 128, 0.5);
+                border-radius: 8px;
+            }
+            #headingcO{
+                padding-top: 10px;
+            }
+            #cartTable{
+                background-color: rgba(128, 128, 128, 0.5);
+                border-radius: 5px;
+            }
+        </style>
     </body>
 
 </html>
