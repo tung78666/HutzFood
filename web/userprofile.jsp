@@ -5,11 +5,37 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="Model.User" %>
+<%@ page import="Model.Role" %>
+<%@ page import="Model.UserStatus" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="CSSsample/userProfile.css">
+        <%
+    // Get the user from the session
+    User user = (User) session.getAttribute("account");
+
+    // Initialize roleName and userStatusName
+    String roleName = "";
+    String userStatusName = "";
+
+    // Check if user is not null
+    if (user != null) {
+
+        Role role = user.getRole();
+        UserStatus userStatus = user.getUserStatus();
+
+        // Get the names
+        if (role != null) {
+            roleName = role.getName();
+        }
+        if (userStatus != null) {
+            userStatusName = userStatus.getName();
+        }
+    }
+        %>
         <style>
 
             body {
@@ -59,7 +85,7 @@
                 border-radius: 4px;
             }
 
-            
+
 
             .change {
                 color: #fff;
@@ -110,6 +136,13 @@
                 <h3>My Profile</h3>
                 <label class="nameprofile">Name</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getName()}" name="name"><br/>
                 <label class="emailprofile">Email</label><input readonly class="emailprofile1" value="${sessionScope['account'].getEmail()}" name="email"><br/>
+                <label class="nameprofile">Role</label><input readonly class="nameprofile1" type="text" value="<%= roleName %>" name="name"><br/>
+                <label class="nameprofile">UserStatus</label><input readonly class="nameprofile1" type="text" value="<%= userStatusName %>" name="name"><br/>
+                <label class="nameprofile">Point</label><input readonly class="nameprofile1" type="text" value="${sessionScope['account'].getPoint()}" name="name"><br/>
+                <label class="nameprofile">Date of Birth</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getDOB()}" name="name"><br/>
+                <label class="nameprofile">Phone Number</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getPhone()}" name="name"><br/>
+                <label class="nameprofile">Location 1</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getLocation1()}" name="name"><br/>
+                <label class="nameprofile">Location 2</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getLocation2()}" name="name"><br/>
                 <a href="ChangePassword.jsp" class="change-container">
                     <span class="change">Change password</span>
                 </a>

@@ -90,6 +90,42 @@ public class UserDAO extends DBContext {
 
         return user;
     }
+    
+    public ArrayList<User> getUsersByDateOfBirthRange(Date dob1, Date dob2) {
+    ArrayList<User> users = new ArrayList<>();
+    String sql = "SELECT user_id, user_name, email, password, role_id, UserStatus_id, user_point, date_of_birth, phonenumber, Location1, Location2, Token FROM Users WHERE date_of_birth BETWEEN ? AND ?";
+
+    try {
+        PreparedStatement st = connection.prepareStatement(sql);
+        st.setDate(1, (java.sql.Date) dob1);
+        st.setDate(2, (java.sql.Date) dob2);
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            User user = new User(
+                    rs.getInt("user_id"),
+                    rs.getString("user_name"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    new RoleDAO().getRoleById(rs.getInt("role_id")),
+                    getUserStatusById(rs.getInt("UserStatus_id")),
+                    rs.getFloat("user_point"),
+                    rs.getDate("date_of_birth"),
+                    rs.getString("phonenumber"),
+                    rs.getString("Location1"),
+                    rs.getString("Location2")
+            );
+            users.add(user);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return users;
+}
+
+    
+    
 //    public void inserUser(String name, String email, String pass, Date dateOfBirth, String phoneNumber) {
 //        String sql = "  insert into [Users] ([user_name],[email],[password],[role_id],[UserStatus_id], [date_of_birth], [phonenumber])  "
 //                + "  values (?,?,?,3,2,?,?)";
@@ -159,17 +195,27 @@ public class UserDAO extends DBContext {
         }
     }
 
-    public void UpdateUser(String name, int userid) {
-        String sql = " update [Users] set [user_name]=? where [user_id] =?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, name);
-            ps.setInt(2, userid);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    public void updateUser(User user) {
+    String sql = "UPDATE [Users] SET [user_name]=?, [email]=?, [password]=?, [role_id]=?, [UserStatus_id]=?, " +
+                 "[user_point]=?, [date_of_birth]=?, [phonenumber]=?, [Location1]=?, [Location2]=? WHERE [user_id]=?";
+    try {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, user.getName());
+        ps.setString(2, user.getEmail());
+        ps.setString(3, user.getPassword());
+        ps.setInt(4, user.getRole().getId()); // Assuming Role has getId() method
+        ps.setInt(5, user.getUserStatus().getId()); // Assuming UserStatus has getId() method
+        ps.setDouble(6, user.getPoint());
+        ps.setDate(7, new java.sql.Date(user.getDOB().getTime()));
+        ps.setString(8, user.getPhone());
+        ps.setString(9, user.getLocation1());
+        ps.setString(10, user.getLocation2());
+        ps.setInt(11, user.getId());
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
     }
+}
 
     public void UpdateStatusUser(int sid, int uid) {
         String sql = " update [Users] set [UserStatus_id]=? where [user_id] =?";
