@@ -1,7 +1,7 @@
 <%-- 
     Document   : ManageBlog
-    Created on : Jun 16, 2024, 11:14:15 PM
-    Author     : Ngocnl
+    Created on : Jun 18, 2023, 11:14:15 PM
+    Author     : Hoàng Vũ
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="CSSsimple/adminDashbord.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/nice-select.css" rel="stylesheet">
-        <title>Coffee</title>     
+        <title>Blog management</title>     
            <script src="ckeditor/ckeditor.js"></script> 
         <script src="ckfinder/ckfinder.js"></script>
         <title>Seller Dashbord</title>   
@@ -80,7 +80,7 @@
             <main>
                 <div class="head-title">
                     <div class="left">
-                        <h1>Manage Blogs</h1>
+                        <h1>Blogs Manage</h1>
                     </div>
                     <div>
                         <form action="ManageBlog" method="post" onsubmit="return checkDate();">
@@ -131,7 +131,7 @@
                     <table class="table" style="margin-top: 20px; margin-bottom: 20px;">
 
                         <thead >
-                            <tr style="font-size: 15px;">
+                            <tr style="font-size: 20px;">
                                 <th scope="col">ID</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Creator</th>

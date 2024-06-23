@@ -1,32 +1,27 @@
-<%-- 
-    Document   : AdminDashboard
-    Created on : Jun 11, 2024, 8:26:05 PM
-    Author     : Ngocnl
---%>
 
 <section id="sidebar">
     <a href="Home" class="brand">
         <i class='bx bxs-coffee'></i>
-        <span class="text">HutzFood</span>
+        <span class="text">Huzt Workshop</span>
     </a>
     <ul class="side-menu top">
         <li class="active">
             <a href="SellerDashboard">
                 <i class='bx bxs-dashboard' ></i>
-                <span class="text">Seller Manage</span>
+                <span class="text">Order Manage</span>
             </a>
         </li>
 
         <li class="active">
             <a href="ManageBlog">
                <i class='bx bxs-dashboard' ></i>
-                <span class="text">Manage Blog</span>
+                <span class="text">Blog Manage</span>
             </a>
         </li>
         <li class="active">
             <a href="ManageOrder">
                 <i class='bx bxs-dashboard' ></i>
-                <span class="text">Manage Order</span>
+                <span class="text">Invoice Manage</span>
             </a>
         </li>
         <li>

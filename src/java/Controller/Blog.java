@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author Ngocnl
+ * @author DELL
  */
 @WebServlet(name="Blog", urlPatterns={"/Blog"})
 public class Blog extends HttpServlet {

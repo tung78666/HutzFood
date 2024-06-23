@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Coffee shop</title>
+        <title>OTP verify</title>
     </head>
     <style>
         body {

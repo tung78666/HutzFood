@@ -1,7 +1,7 @@
 <%-- 
     Document   : BlogList
-    Created on : June 12, 2024, 8:36:56 PM
-    Author     : Ngocnl
+    Created on : May 20, 2023, 8:48:37 PM
+    Author     : DELL
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : AdminDashboard
-    Created on : Jun 11, 2024, 8:26:05 PM
-    Author     : Ngocnl
+    Document   : AdminDashbord
+    Created on : Jun 6, 2023, 8:26:05 PM
+    Author     : asus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -43,7 +43,7 @@
             <main>
                 <div class="head-title">
                     <div class="left">
-                        <h1>Seller Manage</h1>
+                        <h1>Order Manage</h1>
                         <ul class="breadcrumb">
                             <li>
                                 <a href="#"></a>

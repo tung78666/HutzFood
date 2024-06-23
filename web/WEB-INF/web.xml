@@ -102,7 +102,7 @@
     </servlet>
     <servlet>
         <servlet-name>DeleteController</servlet-name>
-        <servlet-class>Controller.DeleteController</servlet-class>
+        <servlet-class>Controller.DeleteProduct</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderController</servlet-name>
@@ -149,6 +149,10 @@
         <servlet-class>Controller.ManageBlog</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManageUserInfo</servlet-name>
+        <servlet-class>Controller.ManageUserInfo</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddBlog</servlet-name>
         <servlet-class>Controller.AddBlog</servlet-class>
     </servlet>
@@ -165,6 +169,10 @@
         <servlet-class>Controller.ChangePassword</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ChangePasswordGG</servlet-name>
+        <servlet-class>Controller.ChangePasswordGG</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GetOrderDetail</servlet-name>
         <servlet-class>Controller.GetOrderDetail</servlet-class>
     </servlet>
@@ -179,6 +187,14 @@
     <servlet>
         <servlet-name>EditRole</servlet-name>
         <servlet-class>Controller.EditRole</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginGoogle</servlet-name>
+        <servlet-class>Controller.LoginGoogle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegGoogle</servlet-name>
+        <servlet-class>Controller.RegGoogle</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
@@ -381,6 +397,10 @@
         <url-pattern>/ManageBlog</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ManageUserInfo</servlet-name>
+        <url-pattern>/ManageUserInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddBlog</servlet-name>
         <url-pattern>/AddBlog</url-pattern>
     </servlet-mapping>
@@ -395,6 +415,10 @@
     <servlet-mapping>
         <servlet-name>ChangePassword</servlet-name>
         <url-pattern>/ChangePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordGG</servlet-name>
+        <url-pattern>/ChangePasswordGG</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetOrderDetail</servlet-name>
@@ -412,9 +436,17 @@
         <servlet-name>EditRole</servlet-name>
         <url-pattern>/EditRole</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogle</servlet-name>
+        <url-pattern>/LoginGoogle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegGoogle</servlet-name>
+        <url-pattern>/RegGoogle</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            3600
         </session-timeout>
     </session-config>
     <welcome-file-list>

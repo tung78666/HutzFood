@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <i class="fas fa-key"></i>
-                    <input type="text" class="form-input" name="pass" placeholder="Password" value="${cookie.ctoken.value}" required>
+                    <input type="password" class="form-input" name="pass" placeholder="Password" value="${cookie.ctoken.value}" required>
                 </div>
                 <p style="color: red;" id="error-mess">${mess}</p>
                 <label class="labelRemem">

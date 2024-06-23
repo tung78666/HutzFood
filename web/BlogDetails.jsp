@@ -1,7 +1,7 @@
 <%-- 
     Document   : BlogDetails
-    Created on : June 08, 2024, 8:36:56 PM
-    Author     : Ngocnl
+    Created on : May 18, 2023, 8:36:56 PM
+    Author     : ASUS
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,7 +9,7 @@
 <html lang="en">
 
     <head>
-        <title>HutzFood</title>
+        <title>BLOG</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
