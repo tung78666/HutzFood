@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ngocnl
+ * @author Hoàng Vũ
  */
 public class DeleteBlog extends HttpServlet {
  

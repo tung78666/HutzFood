@@ -15,7 +15,7 @@ import java.sql.Date;
 
 /**
  *
- * @author Ngocnl
+ * @author Hoàng Vũ
  */
 public class EditBlog extends HttpServlet {
 

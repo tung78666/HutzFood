@@ -44,6 +44,8 @@ public class ChangePassword extends HttpServlet {
         MD5 md5 = new MD5();
         User u = (User) session.getAttribute("account");
         if (!md5.getMd5(oldpass).equals(u.getPassword())) {
+            System.out.println(u.getPassword());
+            System.out.println(md5.getMd5(oldpass));
             request.setAttribute("mess", "Old password not correct");
             request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
         } else if (!newpass.equals(renewpass)) {
