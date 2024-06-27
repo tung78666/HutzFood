@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author asus
+ * @author ducnt
  */
 public class Register extends HttpServlet {
 

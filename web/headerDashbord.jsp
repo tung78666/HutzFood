@@ -20,11 +20,19 @@
         </li>
 
         <li class="active">
-            <a href="ManagerUser">
+            <a href="ManageUserInfo">
                 <i class='bx bxs-group' ></i>
-                <span class="text">Manage User</span>
+                <span class="text">Manage User Info</span>
             </a>
         </li>
+
+        <li class="active">
+            <a href="ManagerUser">
+                <i class='bx bxs-group' ></i>
+                <span class="text">Manage User Status</span>
+            </a>
+        </li>
+
         <li class="active">
             <a href="EditRole">
                 <i class='bx bxs-cog' ></i>

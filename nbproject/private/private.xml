@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ChangePassword.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Login.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ForgotPassword.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/GetOrderDetail.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/GetPriceBySize.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/LoginGoogle.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManageOrder.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Constants.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/CartDetailController.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Blog.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/EditProduct.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/DeleteProduct.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManageUserInfo.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/FeedbackController.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/EditRole.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManageBlog.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManagerUser.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/orderDetail.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/ManageOrder.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Home.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManageProduct.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/LogOut.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ChangePasswordGG.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/EditBlog.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/ManagerUser.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/header.jsp</file>
+        </group>
+    </open-files>
+</project-private>

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author asus
+ * @author Ngocnl
  */
 public class ManagerUser extends HttpServlet {
 

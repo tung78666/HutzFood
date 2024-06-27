@@ -5,22 +5,26 @@
 
 package Controller;
 
-import Model.ProductDTO;
+import DAO.RoleDAO;
+import DAO.UserDAO;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author Ngocnl
+ * @author ducnt
  */
-public class CartDetailController extends HttpServlet {
+public class EditUserInfo extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,15 +37,16 @@ public class CartDetailController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            List<ProductDTO> map = (List<ProductDTO>) session.getAttribute("map");
-            double total = 0;
-            for(ProductDTO i : map){
-                double price = i.getProduct().getPrice() + (i.getProductSize() == null ? 0 : i.getProductSize().getPrice());
-                total += price * i.getQuantity();
-            }
-            request.setAttribute("total", total);
-            request.getRequestDispatcher("cart.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet EditUserInfo</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet EditUserInfo at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     } 
 
@@ -56,7 +61,24 @@ public class CartDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            int id = Integer.parseInt(request.getParameter("id"));
+            UserDAO udao = new UserDAO();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            User user = udao.getUserById(id);
+            user.setName(request.getParameter("name"));
+            user.setEmail(request.getParameter("email"));
+            user.setPoint(Double.parseDouble(request.getParameter("points")));
+            user.setDOB(formatter.parse(request.getParameter("DOB")));
+            user.setPhone(request.getParameter("phone"));
+            user.setLocation1(request.getParameter("location1"));
+            user.setLocation2(request.getParameter("location2"));
+            udao.updateUser(user);
+            response.sendRedirect("ManageUserInfo");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
     } 
 
     /** 

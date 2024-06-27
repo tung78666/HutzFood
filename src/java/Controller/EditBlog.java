@@ -15,7 +15,7 @@ import java.sql.Date;
 
 /**
  *
- * @author Hoàng Vũ
+ * @author ngocnl
  */
 public class EditBlog extends HttpServlet {
 
@@ -27,7 +27,7 @@ public class EditBlog extends HttpServlet {
         String title = request.getParameter("title");
         String img = request.getParameter("img");
         String content = request.getParameter("content");  
-        int id = Integer.valueOf(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id"));
         BlogDao bdao = new BlogDao();
         bdao.updateBlog(title, img, content, id);
         response.sendRedirect("ManageBlog");

@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  *
- * @author Hoàng Vũ
+ * @author Ngocnl
  */
 public class ManageBlog extends HttpServlet {
 

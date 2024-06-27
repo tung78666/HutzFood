@@ -18,11 +18,13 @@ import jakarta.servlet.http.HttpSession;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  *
- * @author Hoàng Vũ
+ * @author ducnt
  */
 public class ManageUserInfo extends HttpServlet {
 
@@ -46,15 +48,84 @@ public class ManageUserInfo extends HttpServlet {
 //        }
         HttpSession session = request.getSession();
         UserDAO udao = new UserDAO();
-        ArrayList<User> userlist = udao.getAllUser();
-        ArrayList<User> userList = new ArrayList<>();
-        for (User u : userlist) {
-            if (u.getRole().getId() == 3 || u.getRole().getId() == 2) {
-                userList.add(u);
+
+        if (session.getAttribute("pl") == null) {
+            ArrayList<User> userlist = udao.getAllUser();
+            ArrayList<User> userList = new ArrayList<>();
+            for (User u : userlist) {
+                if (u.getRole().getId() == 3 || u.getRole().getId() == 2) {
+                    userList.add(u);
+                }
             }
+            session.setAttribute("pl", userList);
+            request.getRequestDispatcher("ManageUserInfo.jsp").forward(request, response);
+        } else {
+            String element2Sort = request.getParameter("element2Sort");
+            String sortRule = request.getParameter("sortRule");
+            //sort
+            ArrayList<User> userlist = new ArrayList<>();
+            ArrayList<User> userList = new ArrayList<>();
+            if (element2Sort == null && sortRule == null) {
+                userlist = udao.getAllUser();
+                for (User u : userlist) {
+                    if (u.getRole().getId() == 3 || u.getRole().getId() == 2) {
+                        userList.add(u);
+                    }
+                }
+            } else {
+                userlist = (ArrayList<User>) session.getAttribute("pl");
+                userList = sortUser(element2Sort, sortRule, userlist);
+            }
+            session.setAttribute("pl", userList);
+            request.getRequestDispatcher("ManageUserInfo.jsp").forward(request, response);
         }
-        request.setAttribute("pl", userList);
-        request.getRequestDispatcher("ManageUserInfo.jsp").forward(request, response);
+
+    }
+
+    private ArrayList<User> sortUser(String element2Sort, String sortRule, ArrayList<User> userlist) {
+        if (sortRule.equals("ASC")) {
+            switch (element2Sort) {
+                case "ID" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getId));
+                }
+                case "Name" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getName));
+
+                }
+                case "Role" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getRoleId));
+
+                }
+                case "Status" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getUserStatusId));
+
+                }
+                case "DateOfBirth" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getDOB));
+
+                }
+            }
+            return userlist;
+        } else {
+            switch (element2Sort) {
+                case "ID" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getId).reversed());
+                }
+                case "Name" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getName).reversed());
+                }
+                case "Role" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getRoleId).reversed());
+                }
+                case "Status" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getUserStatusId).reversed());
+                }
+                case "DateOfBirth" -> {
+                    Collections.sort(userlist, Comparator.comparing(User::getDOB).reversed());
+                }
+            }
+            return userlist;
+        }
     }
 
     @Override
@@ -67,40 +138,25 @@ public class ManageUserInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String search = request.getParameter("search");
-        String firstDate = request.getParameter("firstDate");
-        String secondDate = request.getParameter("secondDate");
-
-//    BlogDao blogDao = new BlogDao();
-//    ArrayList<Blog> blogList = new ArrayList<>();
-//
-//    if (search != null) {
-//        blogList = blogDao.searchBlog(search);
-//    } else if (firstDate != null && secondDate != null) {
-//        Date fdate = Date.valueOf(firstDate);
-//        Date sdate = Date.valueOf(secondDate);
-//        blogList = blogDao.getBlogByDate(fdate, sdate);
-//    }
-//
-//    request.setAttribute("bl", blogList);
-//    request.getRequestDispatcher("ManageBlog.jsp").forward(request, response);
+        String sB = request.getParameter("searchBY");
         UserDAO udao = new UserDAO();
         ArrayList<User> userlist = new ArrayList<>();
-        if (search != null) {
-            blogList = blogDao.searchBlog(search);
-        } else if (firstDate != null && secondDate != null) {
-            Date fdate = Date.valueOf(firstDate);
-            Date sdate = Date.valueOf(secondDate);
-            userlist = udao.getUsersByDateOfBirthRange(fdate, sdate);
-        }
-        ArrayList<User> userList = new ArrayList<>();
-        for (User u : userlist) {
-            if (u.getRole().getId() == 3 || u.getRole().getId() == 2) {
-                userList.add(u);
+        if (search.isBlank()) {
+            processRequest(request, response);
+        } else {
+            if ("Name".equals(sB)) {
+                userlist = udao.getByName(search);
+            } else if ("ID".equals(sB)) {
+                userlist.add(udao.getUserById(Integer.parseInt(search)));
+            } else {
+                userlist = udao.getByPhone(search);
             }
+            session.setAttribute("pl", userlist);
+            request.getRequestDispatcher("ManageUserInfo.jsp").forward(request, response);
         }
-        request.setAttribute("pl", userList);
-        request.getRequestDispatcher("ManageUserInfo.jsp").forward(request, response);
+
     }
 
     @Override

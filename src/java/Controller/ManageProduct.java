@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Hoàng Vũ
+ * @author ducnt
  */
 public class ManageProduct extends HttpServlet {
 

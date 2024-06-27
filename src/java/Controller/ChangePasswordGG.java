@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Hoàng Vũ
+ * @author Dan09
  */
 public class ChangePasswordGG extends HttpServlet {
 

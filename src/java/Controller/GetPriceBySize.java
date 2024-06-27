@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author asus
+ * @author Ngocnl
  */
 public class GetPriceBySize extends HttpServlet {
 

@@ -1,7 +1,6 @@
 <%-- 
     Document   : AdminDashbord
-    Created on : Jun 6, 2023, 8:26:05 PM
-    Author     : asus
+    Author     : Ngocnl
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +14,7 @@
         <!-- Boxicons -->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- My CSS -->
-        <link rel="stylesheet" href="CSSsimple/adminDashbord.css">
+        <link rel="stylesheet" href="CSSsimple/adminDashbroad.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <title>Admin Dashbord</title>     

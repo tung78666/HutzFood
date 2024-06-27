@@ -11,21 +11,22 @@ import java.util.Date;
  * @author asus
  */
 public class User {
+
     private int id;
     private String name;
     private String email;
     private String password;
     private Role role;
     private UserStatus userStatus;
-    private double point; 
-    private Date DOB; 
-    private String Phone; 
-    private String Location1; 
-    private String Location2; 
+    private double point;
+    private Date DOB;
+    private String Phone;
+    private String Location1;
+    private String Location2;
 
     public User() {
-    }    
-    
+    }
+
     public User(String name) {
         this.name = name;
     }
@@ -80,6 +81,10 @@ public class User {
         return role;
     }
 
+    public int getRoleId() {
+        return role.getId();
+    }
+
     public void setRole(Role role) {
         this.role = role;
     }
@@ -87,7 +92,9 @@ public class User {
     public UserStatus getUserStatus() {
         return userStatus;
     }
-
+    public int getUserStatusId() {
+        return userStatus.getId();
+    }
     public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
     }
@@ -131,5 +138,5 @@ public class User {
     public void setLocation2(String Location2) {
         this.Location2 = Location2;
     }
-    
+
 }

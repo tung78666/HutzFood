@@ -9,7 +9,7 @@
         <!-- Boxicons -->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- My CSS -->
-        <link rel="stylesheet" href="CSSsimple/adminDashbord.css">
+        <link rel="stylesheet" href="CSSsimple/adminDashbroad.css">
 
         <!-- jQuery UI -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

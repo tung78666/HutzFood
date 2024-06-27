@@ -1,7 +1,7 @@
 <%-- 
     Document   : Register
     Created on : May 15, 2023, 9:04:59 PM
-    Author     : asus
+    Author     : ducnt
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +37,7 @@
                            class="text" 
                            id="MoveInDate" 
                            name="DOB" 
-                           placeholder="DD-MM-YYYY" 
+                           placeholder="MM-dd-yyyy" 
                            type="date" 
                            min="1970-01-01" 
                            max="2008-06-11" 

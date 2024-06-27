@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author HC
+ * @author ducnt
  */
 public class Login extends HttpServlet {
 

@@ -1,7 +1,6 @@
 <%-- 
-    Document   : AdminDashbord
-    Created on : Jun 6, 2023, 8:26:05 PM
-    Author     : asus
+    Document   : SellerDashbord
+    Author     : Ngocnl
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-         version="5.0">
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>Controller.Register</servlet-class>
@@ -81,8 +77,8 @@
         <servlet-class>Controller.EditProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminDashbord</servlet-name>
-        <servlet-class>Controller.AdminDashbord</servlet-class>
+        <servlet-name>AdminDashbroad</servlet-name>
+        <servlet-class>Controller.AdminDashbroad</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerUser</servlet-name>
@@ -200,6 +196,10 @@
         <servlet-name>RegGoogle</servlet-name>
         <servlet-class>Controller.RegGoogle</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUserInfo</servlet-name>
+        <servlet-class>Controller.EditUserInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -262,6 +262,10 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/ManageUserInfo</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/UserDetails</url-pattern>
     </filter-mapping>
     <filter-mapping>
@@ -274,7 +278,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/AdminDashbord</url-pattern>
+        <url-pattern>/AdminDashbroad</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
@@ -282,7 +286,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/AdminDashboard</url-pattern>
+        <url-pattern>/AdminDashbroad</url-pattern>
     </filter-mapping>
     <servlet-mapping>
         <servlet-name>ProductDetails</servlet-name>
@@ -329,8 +333,8 @@
         <url-pattern>/EditProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminDashbord</servlet-name>
-        <url-pattern>/AdminDashbord</url-pattern>
+        <servlet-name>AdminDashbroad</servlet-name>
+        <url-pattern>/AdminDashbroad</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManagerUser</servlet-name>
@@ -447,6 +451,10 @@
     <servlet-mapping>
         <servlet-name>RegGoogle</servlet-name>
         <url-pattern>/RegGoogle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserInfo</servlet-name>
+        <url-pattern>/EditUserInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

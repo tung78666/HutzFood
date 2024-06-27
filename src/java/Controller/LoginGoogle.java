@@ -30,7 +30,7 @@ import org.apache.http.client.fluent.Form;
 //import org.apache.http.client.HttpResponseException;
 /**
  *
- * @author Dan09
+ * @author ducnt
  */
 public class LoginGoogle extends HttpServlet {
 

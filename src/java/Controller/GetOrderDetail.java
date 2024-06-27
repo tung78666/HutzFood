@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author asus
+ * @author MiNH
  */
 public class GetOrderDetail extends HttpServlet {
 

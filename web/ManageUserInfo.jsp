@@ -1,7 +1,6 @@
 <%-- 
-    Document   : ManageBlog
-    Created on : Jun 18, 2023, 11:14:15 PM
-    Author     : Hoàng Vũ
+    Document   : ManageUserInfo
+    Author     : ducnt
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,13 +17,12 @@
         <!-- Boxicons -->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- My CSS -->
-        <link rel="stylesheet" href="CSSsimple/adminDashbord.css">
+        <link rel="stylesheet" href="CSSsimple/adminDashbroad.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/nice-select.css" rel="stylesheet">
-        <title>Blog management</title>     
+        <title>UserInfoManage</title>     
         <script src="ckeditor/ckeditor.js"></script> 
         <script src="ckfinder/ckfinder.js"></script>
-        <title>Seller Dashbord</title>   
         <style>
             /* Định dạng nút View */
             .viewButton {
@@ -56,13 +54,30 @@
                 border: 2px solid limegreen;
                 /* Viền sáng màu xanh lá cây */
             }
+            .filter-option {
+                background-color: lightblue;
+                opacity: 1;
+                padding: 5px;
+                margin: 5px;
+                border-radius: 5px;
+                display: inline-block;
+            }
+            .filter-option input {
+                margin-right: 5px;
+            }
+            .dropdown {
+                margin-left: 5px;
+            }
+            #submitButton:hover{
+                opacity: 0.3;
+            }
         </style>
 
     </head>
 
     <body>
         <!-- SIDEBAR -->
-        <jsp:include page="headerSeller.jsp"/>
+        <jsp:include page="headerDashbord.jsp"/>
         <!-- SIDEBAR -->
 
         <!-- CONTENT -->
@@ -70,12 +85,12 @@
             <!-- NAVBAR -->
             <nav>
                 <i class='bx bx-menu' ></i>
-                <form action="ManageUserInfo" method="post">
-                    <div class="form-input">
-                        <input type="search" name="search" placeholder="Search...">
-                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-                    </div>
-                </form>
+                <!--                <form action="ManageUserInfo" method="post">
+                                    <div class="form-input">
+                                        <input type="search" name="search" placeholder="Search..." style="border-radius: 2px">
+                                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                                    </div>
+                                </form>-->
             </nav>
             <!-- NAVBAR -->
 
@@ -84,52 +99,77 @@
                 <div class="head-title">
                     <div class="left">
                         <h1>Manage User Information</h1>
+                        <div>
+                            <form id="filterForm" action="ManageUserInfo" method="GET">
+
+                                <label class="filter-option">
+                                    Sort by: 
+                                    <select name="element2Sort" class="dropdown">
+                                        <option value="ID" selected>ID</option>
+                                        <option value="Name">Name</option>
+                                        <option value="Role">Role</option>
+                                        <option value="Status">Status</option>
+                                        <option value="DateOfBirth">DateOfBirth</option>
+                                    </select>
+                                    <select name="sortRule" class="dropdown">
+                                        <option value="ASC" selected>ASC</option>
+                                        <option value="DES">DES</option>
+                                    </select>
+                                    <input style="background: var(--blue); color: white; border: solid var(--blue); font-size: 17px; border-radius: 5px;"
+                                           type="submit" value="Submit" id="submitButton">
+                                </label>
+
+                            </form>
+                        </div>
                     </div>
                     <div>
-                        <form action="ManageUserInfo" method="post" onsubmit="return checkDate();">
-                            <input required type="date" name="firstDate">
-                            <input style="margin: 14px" required type="date" name="secondDate">
-                            <input style="background: var(--blue);
-                                   color: white;
-                                   border: solid var(--blue);
-                                   font-size: 17px;
-                                   border-radius: 15px;" type="submit" value="Search">
+                        <form action="ManageUserInfo" method="post">
+                            <div class="form-input">
+                                <input type="search" name="search" placeholder="Search...">
+                                <input style="background: var(--blue); color: white; border: solid var(--blue); font-size: 17px; border-radius: 15px;"
+                                       type="submit" value="Search">
+                                <div>
+                                    <input type="radio" name="searchBY" value="Name" checked/>Search Name
+                                    <input type="radio" name="searchBY" value="ID" />Search ID
+                                    <input type="radio" name="searchBY" value="Phone" />Search Phone
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
 
 
                 <div style="margin-top: 3rem;" class="col-md-12">       
-                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModalAddNew">Add User</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModalAddNew" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Add Blog</h4>
-                                </div>
-                                <form action="AddBlog" method="post" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        <b>Title: </b><input type="text" class="form-control" value="" required name="title"><br>  
-                                        <b>Content: </b>
-                                        <div class="form-control">
-                                            <textarea id="edit" rows="5" name="content" class="form-control" placeholder="Write some thing..." required=""></textarea>
-                                        </div>
-
-                                        <b>Image:</b><input type="file" class="form-control" required  value="" name="img"><br>
-                                        <b><input type="hidden" class="form-control" required  value="${sessionScope['account'].getId()}" name="user"></b>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success" value="submit">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModalAddNew">Add User</button>
+                                         Modal 
+                                        <div class="modal fade" id="myModalAddNew" role="dialog">
+                                            <div class="modal-dialog">
+                    
+                                                 Modal content
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Add Blog</h4>
+                                                    </div>
+                                                    <form action="AddBlog" method="post" enctype="multipart/form-data">
+                                                        <div class="modal-body">
+                                                            <b>Title: </b><input type="text" class="form-control" value="" required name="title"><br>  
+                                                            <b>Content: </b>
+                                                            <div class="form-control">
+                                                                <textarea id="edit" rows="5" name="content" class="form-control" placeholder="Write some thing..." required=""></textarea>
+                                                            </div>
+                    
+                                                            <b>Image:</b><input type="file" class="form-control" required  value="" name="img"><br>
+                                                            <b><input type="hidden" class="form-control" required  value="${sessionScope['account'].getId()}" name="user"></b>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-success" value="submit">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>-->
 
                     <table class="table" style="margin-top: 20px; margin-bottom: 20px;">
 
@@ -181,7 +221,7 @@
                                             <h4 class="modal-title">Edit User:</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <form action="EditBlog" method="post">
+                                        <form action="EditUserInfo" method="get">
                                             <div class="modal-body">
                                                 <b>ID: </b><input type="text" class="form-control" name="id" value="${p.getId()}" readonly><br>
                                                 <b>Name: </b><input type="text" class="form-control" value="${p.getName()}" name="name"><br>
@@ -212,19 +252,10 @@
             <!-- MAIN -->
         </section>
         <!-- CONTENT -->
-        <script>
-            function checkDate() {
-                var firstDate = document.getElementsByName("firstDate")[0].value;
-                var secondDate = document.getElementsByName("secondDate")[0].value;
-
-                if (firstDate && secondDate && new Date(secondDate) < new Date(firstDate)) {
-                    alert("Second date must be after the first date.");
-                    return false;
-                }
-                return true;
-            }
-        </script>
         <script >
+            function submitForm() {
+                document.getElementById('filterForm').submit();
+            }
 
             CKEDITOR.replace('edit', {
                 filebrowserBrowseUrl: 'ckfinder/ckfinder.html',

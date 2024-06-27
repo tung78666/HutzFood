@@ -15,7 +15,7 @@ import java.util.Random;
 
 /**
  *
- * @author Hoàng Vũ
+ * @author khailt
  */
 public class ForgotPassword extends HttpServlet {
 
