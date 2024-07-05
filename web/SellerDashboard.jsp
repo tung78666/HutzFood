@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Boxicons -->
-        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.css' rel='stylesheet'>
         <!-- My CSS -->
         <link rel="stylesheet" href="CSSsimple/sellerDashbord.css">
 
@@ -30,12 +30,7 @@
             <!-- NAVBAR -->
             <nav>
                 <i class='bx bx-menu' ></i>
-                <form action="#">
-                    <div class="form-input">                  
-                    </div>
-                </form>
-                <a href="#" class="profile">
-                </a>
+
             </nav>
             <!-- NAVBAR -->
 
@@ -43,14 +38,6 @@
                 <div class="head-title">
                     <div class="left">
                         <h1>Order Manage</h1>
-                        <ul class="breadcrumb">
-                            <li>
-                                <a href="#"></a>
-                            </li>
-                            <li>
-                                <a class="active" href="#"></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
 
@@ -79,13 +66,26 @@
                                         <td><textarea class="address" readonly>${o.getAddress()}</textarea></td>
                                         <td>${o.getPhone()}</td>
                                         <td>
+                                            <c:set var="statusClass" value="" />
+                                            <c:choose>
+                                                <c:when test="${o.getStatus().getId() == 1}">
+                                                    <c:set var="statusClass" value="process" />
+                                                </c:when>
+                                                <c:when test="${o.getStatus().getId() == 2}">
+                                                    <c:set var="statusClass" value="pending" />
+                                                </c:when>
+                                                <c:when test="${o.getStatus().getId() == 3}">
+                                                    <c:set var="statusClass" value="queue" />
+                                                </c:when>
+                                            </c:choose>
                                             <form action="updateOrderStatus" method="get">
-                                                <span class="status process">
-
-                                                    <select name="select" style="background-color: var(--yellow); border: solid var(--yellow);" onchange="this.form.submit()">
+                                                <span class="status ${statusClass}">
+                                                    <select name="select" onchange="confirmationBox(this)">
                                                         <option value="0">${o.getStatus().getName()}</option> 
                                                         <c:forEach items="${otlist}" var="ot">
-                                                            <option value="${ot.getId()}&${o.getId()}">${ot.getName()}</option>
+                                                            <c:if test="${ot.getId() != o.getStatus().getId()}">
+                                                                <option value="${ot.getId()}&${o.getId()}">${ot.getName()}</option>
+                                                            </c:if>
                                                         </c:forEach>
                                                     </select>   
                                                 </span>
@@ -101,6 +101,14 @@
             <!-- MAIN -->
         </section>
         <!-- CONTENT -->
+        <script>
+            function confirmationBox(selectElement) {
+                const selectedValue = selectElement.options[selectElement.selectedIndex].text;
+                if (confirm("Are you sure to change status to " + selectedValue + " ?")) {
+                    selectElement.form.submit();
+                }
+            }
+        </script>
         <script src="js/adminDashbord.js"></script>
     </body>
 </html>

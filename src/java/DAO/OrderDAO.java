@@ -126,10 +126,10 @@ public class OrderDAO extends DBContext {
         }
     }
 
-    public ArrayList<Order> getOrderProcess() {
+    public ArrayList<Order> getOrder2Process() {
         ArrayList<Order> list = new ArrayList<>();
         try {
-            String sql = "select * from [Order] o inner join OrderStatus os on o.orderStatus_id = os.OrderStatus_id where os.OrderStatus_id = 1 order by order_date desc";
+            String sql = "select * from [Order] o inner join OrderStatus os on o.orderStatus_id = os.OrderStatus_id where os.OrderStatus_id != 4 and os.OrderStatus_id != 5 order by order_date desc";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -146,7 +146,7 @@ public class OrderDAO extends DBContext {
     public ArrayList<Order> getOrder() {
         ArrayList<Order> list = new ArrayList<>();
         try {
-            String sql = "select * from [Order] o inner join OrderStatus os on o.orderStatus_id = os.OrderStatus_id where os.OrderStatus_id = 2 order by order_date desc";
+            String sql = "select * from [Order] o inner join OrderStatus os on o.orderStatus_id = os.OrderStatus_id where os.OrderStatus_id = 4 or os.OrderStatus_id = 5  order by order_date desc";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -163,7 +163,8 @@ public class OrderDAO extends DBContext {
     public ArrayList<OrderStatus> getOrderSt() {
         ArrayList<OrderStatus> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM [OrderStatus] where OrderStatus_id = 2 or  OrderStatus_id = 3";
+//            where OrderStatus_id  != 1
+            String sql = "SELECT * FROM [OrderStatus] ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

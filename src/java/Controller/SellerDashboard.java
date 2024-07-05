@@ -26,7 +26,7 @@ public class SellerDashboard extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
        OrderDAO dao = new OrderDAO(); 
-       ArrayList<Order> list = dao.getOrderProcess(); 
+       ArrayList<Order> list = dao.getOrder2Process(); 
        ArrayList<OrderStatus> otlist  =dao.getOrderSt(); 
        request.setAttribute("olist", list);
        request.setAttribute("otlist", otlist);

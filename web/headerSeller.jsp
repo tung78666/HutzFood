@@ -1,7 +1,7 @@
 
 <section id="sidebar">
     <a href="Home" class="brand">
-        <i class='bx bxs-coffee'></i>
+        <i class='bx bx-home-alt-2' style='color:#3c91e6' ></i>
         <span class="text">Huzt Workshop</span>
     </a>
     <ul class="side-menu top">
