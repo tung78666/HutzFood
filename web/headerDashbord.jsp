@@ -48,7 +48,7 @@
         </li>
         
           <li class="active">
-            <a href="AbsentManager">
+            <a href="ManagerAbsent">
                <i class='bx bxs-calendar'></i>
                 <span class="text">AbsentManager</span>
             </a>

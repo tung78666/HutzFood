@@ -208,6 +208,18 @@
         <servlet-name>FileUploadServlet</servlet-name>
         <servlet-class>Controller.FileUploadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerAbsentController</servlet-name>
+        <servlet-class>Controller.ManagerAbsentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAbsentStatusController</servlet-name>
+        <servlet-class>Controller.UpdateAbsentStatusController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAbsentData</servlet-name>
+        <servlet-class>Controller.GetAbsentDataController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -471,6 +483,18 @@
     <servlet-mapping>
         <servlet-name>FileUploadServlet</servlet-name>
         <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerAbsentController</servlet-name>
+        <url-pattern>/ManagerAbsent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAbsentStatusController</servlet-name>
+        <url-pattern>/UpdateAbsentStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAbsentData</servlet-name>
+        <url-pattern>/GetAbsentData</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
