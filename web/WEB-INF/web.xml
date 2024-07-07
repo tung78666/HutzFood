@@ -220,6 +220,10 @@
         <servlet-name>GetAbsentData</servlet-name>
         <servlet-class>Controller.GetAbsentDataController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAbsentController</servlet-name>
+        <servlet-class>Controller.AddAbsentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -495,6 +499,10 @@
     <servlet-mapping>
         <servlet-name>GetAbsentData</servlet-name>
         <url-pattern>/GetAbsentData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAbsentController</servlet-name>
+        <url-pattern>/AddAbsent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

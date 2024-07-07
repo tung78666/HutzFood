@@ -149,6 +149,24 @@ public class AdminDAO extends DBContext {
         return 0;
     }
 
+    // Phương thức mới để thêm mới record vào bảng Absent
+    public boolean addAbsent(Absent absent) {
+        String sql = "INSERT INTO Absent (UserId, Phone, DateAbsent, Reason, Status) VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, absent.getUserId());
+            ps.setString(2, absent.getPhone());
+            ps.setDate(3, absent.getDateAbsent());
+            ps.setString(4, absent.getReason());
+            ps.setString(5, absent.getStatus());
+            int rowsInserted = ps.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         AdminDAO dao = new AdminDAO();
         // Test case 1: Lấy dữ liệu từ ngày từ 2024-01-01 đến ngày 2024-12-31 với status "Approved" và trang 1

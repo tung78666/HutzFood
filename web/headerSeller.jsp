@@ -24,6 +24,14 @@
                 <span class="text">Invoice Manage</span>
             </a>
         </li>
+        
+        <li class="active">
+            <a href="AddAbsent">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Register absent</span>
+            </a>
+        </li>
+        
         <li>
             <a href="LogOut" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>

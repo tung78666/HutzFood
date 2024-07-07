@@ -15,12 +15,13 @@ import java.io.PrintWriter;
 @MultipartConfig
 public class EditStoreProfileController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AdminDAO dao = new AdminDAO();
         Store store = dao.getStoreInfor();
         request.setAttribute("store", store);
+        System.out.println(store.getImage());
         request.getRequestDispatcher("/editStoreProfile.jsp").forward(request, response);
     }
 
