@@ -40,7 +40,7 @@ public class DeleteProduct extends HttpServlet {
             throws ServletException, IOException {
         // Get the index of the product to remove
         String index = request.getParameter("idx");
-        
+
         // Get cookies and session
         Cookie[] cookies = request.getCookies();
         HttpSession session = request.getSession();
@@ -137,7 +137,9 @@ public class DeleteProduct extends HttpServlet {
             }
         }
         session.setAttribute("map", map);
-        response.sendRedirect("cart");
+        // Redirect to the referring page
+        String url = request.getHeader("referer");
+        response.sendRedirect(url);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

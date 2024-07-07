@@ -18,10 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author kienb
- */
 public class OrderDAO extends DBContext {
 
     public void insertOrder(String name, String phone, String address, String note, int discount, Date date, User user, List<ProductDTO> map) {
@@ -38,6 +34,95 @@ public class OrderDAO extends DBContext {
                     + "           ,[order_phone])\n"
                     + "     VALUES\n"
                     + "           (?,?,1,?,getdate(),?,?,?)";
+        } else {
+            sql = "INSERT INTO [dbo].[Order]\n"
+                    + "            ([order_name]\n"
+                    + "           ,[orderStatus_id]\n"
+                    + "           ,[order_discount]\n"
+                    + "           ,[order_date]\n"
+                    + "           ,[notes]\n"
+                    + "           ,[order_address]\n"
+                    + "           ,[order_phone])\n"
+                    + "     VALUES\n"
+                    + "           (?,1,?,getdate(),?,?,?)";
+        }
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            if (user != null) {
+                ps.setInt(1, user.getId());
+                ps.setString(2, name);
+                ps.setInt(3, discount);
+//                ps.setDate(4, new java.sql.Date(date.getTime()));
+                ps.setString(4, note);
+                ps.setString(5, address);
+                ps.setString(6, phone);
+            } else {
+                ps.setString(1, name);
+                ps.setInt(2, discount);
+//                ps.setDate(3, new java.sql.Date(date.getTime()));
+                ps.setString(3, note);
+                ps.setString(4, address);
+                ps.setString(5, phone);
+            }
+            ps.executeUpdate();
+            String xSQL = "Select top 1 * from [Order] order by order_id desc";
+            ps = connection.prepareStatement(xSQL);
+            ResultSet rs = ps.executeQuery();
+            int id = -99;
+            if (rs.next()) {
+                id = rs.getInt("order_id");
+            }
+            String qSQL = "INSERT INTO [dbo].[OrderDetail]\n"
+                    + "           ([order_id]\n"
+                    + "           ,[product_id]\n"
+                    + "           ,[order_price]\n"
+                    + "           ,[quantity]\n"
+                    + "           ,[productSize_id])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?)";
+            String zSQL = "INSERT INTO [dbo].[OrderDetail]\n"
+                    + "           ([order_id]\n"
+                    + "           ,[product_id]\n"
+                    + "           ,[order_price]\n"
+                    + "           ,[quantity])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?)";
+            for (ProductDTO i : map) {
+                if (i.getProductSize() != null) {
+                    ps = connection.prepareStatement(qSQL);
+                    ps.setInt(1, id);
+                    ps.setInt(2, i.getProduct().getId());
+                    ps.setDouble(3, i.getProduct().getPrice() + i.getProductSize().getPrice());
+                    ps.setInt(4, i.getQuantity());
+                    ps.setInt(5, i.getProductSize().getId());
+                    ps.executeUpdate();
+                } else {
+                    ps = connection.prepareStatement(zSQL);
+                    ps.setInt(1, id);
+                    ps.setInt(2, i.getProduct().getId());
+                    ps.setDouble(3, i.getProduct().getPrice());
+                    ps.setInt(4, i.getQuantity());
+                    ps.executeUpdate();
+                }
+
+            }
+        } catch (SQLException e) {
+        }
+    }
+    public void insertOrderInStore(String name, String phone, String address, String note, int discount, Date date, User user, List<ProductDTO> map) {
+        String sql;
+        if (user != null) {
+            sql = "INSERT INTO [dbo].[Order]\n"
+                    + "           ([user_id]\n"
+                    + "           ,[order_name]\n"
+                    + "           ,[orderStatus_id]\n"
+                    + "           ,[order_discount]\n"
+                    + "           ,[order_date]\n"
+                    + "           ,[notes]\n"
+                    + "           ,[order_address]\n"
+                    + "           ,[order_phone])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,2,?,getdate(),?,?,?)";
         } else {
             sql = "INSERT INTO [dbo].[Order]\n"
                     + "            ([order_name]\n"
