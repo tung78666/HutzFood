@@ -51,8 +51,11 @@ public class AddToCart extends HttpServlet {
                 request.setAttribute("count", new FeedbackDAO().countComment(Integer.valueOf(pid)));
                 request.setAttribute("slist", new ProductDAO().getProductSize());
                 request.setAttribute("p", new ProductDAO().getProductById(Integer.valueOf(pid)));
-                request.setAttribute("mess", "Please Login");
-                request.getRequestDispatcher("ProductDetails.jsp").forward(request, response);
+                request.setAttribute("message", "Please Login");
+                session.setAttribute("message", "Please Login");
+                // Redirect to the referring page
+                String url = request.getHeader("referer");
+                response.sendRedirect(url);
             }
             int num = 1;
             if (quantity != null) {

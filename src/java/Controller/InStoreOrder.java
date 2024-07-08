@@ -164,11 +164,12 @@ public class InStoreOrder extends HttpServlet {
                     }
                 }
                 od.insertOrderInStore(name, phone, address, note, discount, new Date(), user, map);
+                response.sendRedirect("InStoreOrder");
             } else if (Integer.parseInt(pm) == 2) {
                 od.insertOrderInStore(name, phone, address, note, discount, new Date(), user, map);
                 OnlineBankingPayOS(request, response, map);
             }
-            request.getRequestDispatcher("InStore_Order.jsp").forward(request, response);
+//            
         }
 
     }
