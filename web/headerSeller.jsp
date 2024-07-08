@@ -6,6 +6,12 @@
     </a>
     <ul class="side-menu top">
         <li class="active">
+            <a href="InStoreOrder">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">In-Store Order</span>
+            </a>
+        </li>
+        <li class="active">
             <a href="SellerDashboard">
                 <i class='bx bxs-dashboard' ></i>
                 <span class="text">Order Manage</span>

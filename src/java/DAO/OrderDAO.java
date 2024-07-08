@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author kienb
+ */
 public class OrderDAO extends DBContext {
 
     public void insertOrder(String name, String phone, String address, String note, int discount, Date date, User user, List<ProductDTO> map) {
@@ -109,6 +113,7 @@ public class OrderDAO extends DBContext {
         } catch (SQLException e) {
         }
     }
+
     public void insertOrderInStore(String name, String phone, String address, String note, int discount, Date date, User user, List<ProductDTO> map) {
         String sql;
         if (user != null) {
@@ -197,6 +202,22 @@ public class OrderDAO extends DBContext {
             }
         } catch (SQLException e) {
         }
+    }
+
+    public int getIDLatestOrder() {
+        try {
+            String xSQL = "Select top 1 * from [Order] order by order_id desc";
+            PreparedStatement ps = connection.prepareStatement(xSQL);
+            ResultSet rs = ps.executeQuery();
+            int id = -99;
+            if (rs.next()) {
+                id = rs.getInt("order_id");
+            }
+            return id;
+        } catch (Exception e) {
+
+        }
+        return -99;
     }
 
     public void updateUser(int point, int id) {
@@ -310,34 +331,33 @@ public class OrderDAO extends DBContext {
     }
 
     public ArrayList<ProductDTO> getAllProducts(String orderId) {
-    ArrayList<ProductDTO> list = new ArrayList<>();
-    String sql = "SELECT od.*, o.user_id FROM OrderDetail od " +
-                 "JOIN [Order] o ON od.order_id = o.order_id " +
-                 "WHERE od.order_id = ?";
-    try {
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, Integer.parseInt(orderId));
-        ResultSet rs = ps.executeQuery();
-        ProductDAO pdo = new ProductDAO();
-        ProductSizeDao pdSizeDAO = new ProductSizeDao();
-        while (rs.next()) {
-            int productId = rs.getInt("product_id");
-            Product p = pdo.getProductById(productId);
-            int productSizeId = rs.getInt("productSize_id");
-            ProductSize pSize = pdSizeDAO.getProductSizeById(productSizeId);
-            int quantity = rs.getInt("quantity");
-            // Assuming ProductDTO has a constructor that accepts Product, ProductSize, quantity, and user_id
-            int userId = rs.getInt("user_id");
-            User user= new UserDAO().getUserById(userId);
-            ProductDTO productDTO = new ProductDTO(p, pSize, quantity, user);
-            list.add(productDTO);
+        ArrayList<ProductDTO> list = new ArrayList<>();
+        String sql = "SELECT od.*, o.user_id FROM OrderDetail od "
+                + "JOIN [Order] o ON od.order_id = o.order_id "
+                + "WHERE od.order_id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(orderId));
+            ResultSet rs = ps.executeQuery();
+            ProductDAO pdo = new ProductDAO();
+            ProductSizeDao pdSizeDAO = new ProductSizeDao();
+            while (rs.next()) {
+                int productId = rs.getInt("product_id");
+                Product p = pdo.getProductById(productId);
+                int productSizeId = rs.getInt("productSize_id");
+                ProductSize pSize = pdSizeDAO.getProductSizeById(productSizeId);
+                int quantity = rs.getInt("quantity");
+                // Assuming ProductDTO has a constructor that accepts Product, ProductSize, quantity, and user_id
+                int userId = rs.getInt("user_id");
+                User user = new UserDAO().getUserById(userId);
+                ProductDTO productDTO = new ProductDTO(p, pSize, quantity, user);
+                list.add(productDTO);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Better to log the exception
         }
-    } catch (Exception e) {
-        e.printStackTrace(); // Better to log the exception
+        return list;
     }
-    return list;
-}
-
 
     public ArrayList<Order> getOrderByDate(Date fdate, Date sdate) {
         ArrayList<Order> list = new ArrayList<>();
@@ -361,17 +381,17 @@ public class OrderDAO extends DBContext {
     public ArrayList<OrderDetail> getOrderDetail(int odid) {
         ArrayList<OrderDetail> list = new ArrayList<>();
         try {
-            String sql = "SELECT order_id, order_name, OrderStatus_name, order_date, product_name, productSize_name, order_price, quantity,order_discount,notes, order_address, order_phone, amount, user_id, (order_price * quantity) AS amount_total\n" +
-"                    FROM (\n" +
-"                      SELECT o.order_id, o.order_name, os.OrderStatus_name, o.order_date, p.product_name, ps.productSize_name, od.order_price, od.quantity,o.order_discount,o.notes, o.order_address, o.order_phone, (od.order_price * od.quantity) AS amount, o.user_id, 1 AS sort_order\n" +
-"                      FROM [Order] o\n" +
-"                      INNER JOIN OrderStatus os ON o.orderStatus_id = os.OrderStatus_id\n" +
-"                      INNER JOIN OrderDetail od ON o.order_id = od.order_id\n" +
-"                      INNER JOIN Product p ON od.product_id = p.product_id\n" +
-"                      INNER JOIN ProductSize ps ON od.productSize_id = ps.productSize_id\n" +
-"                     WHERE o.order_id = ? \n" +
-"                    ) AS union_result\n" +
-"                    ORDER BY sort_order, order_date DESC";
+            String sql = "SELECT order_id, order_name, OrderStatus_name, order_date, product_name, productSize_name, order_price, quantity,order_discount,notes, order_address, order_phone, amount, user_id, (order_price * quantity) AS amount_total\n"
+                    + "                    FROM (\n"
+                    + "                      SELECT o.order_id, o.order_name, os.OrderStatus_name, o.order_date, p.product_name, ps.productSize_name, od.order_price, od.quantity,o.order_discount,o.notes, o.order_address, o.order_phone, (od.order_price * od.quantity) AS amount, o.user_id, 1 AS sort_order\n"
+                    + "                      FROM [Order] o\n"
+                    + "                      INNER JOIN OrderStatus os ON o.orderStatus_id = os.OrderStatus_id\n"
+                    + "                      INNER JOIN OrderDetail od ON o.order_id = od.order_id\n"
+                    + "                      INNER JOIN Product p ON od.product_id = p.product_id\n"
+                    + "                      INNER JOIN ProductSize ps ON od.productSize_id = ps.productSize_id\n"
+                    + "                     WHERE o.order_id = ? \n"
+                    + "                    ) AS union_result\n"
+                    + "                    ORDER BY sort_order, order_date DESC";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, odid);
             ResultSet rs = ps.executeQuery();
@@ -384,13 +404,13 @@ public class OrderDAO extends DBContext {
                 String productSizeName = rs.getString("productSize_name");
                 double orderPrice = rs.getDouble("order_price");
                 int quantity = rs.getInt("quantity");
-                int discount = rs.getInt("order_discount"); 
+                int discount = rs.getInt("order_discount");
                 String notes = rs.getString("notes");
                 String orderAddress = rs.getString("order_address");
                 String orderPhone = rs.getString("order_phone");
                 double amount = rs.getDouble("amount");
                 int userId = rs.getInt("user_id");
-                OrderDetail orderDetail = new OrderDetail(orderId, orderName, orderStatusName, orderDate, new Product(productName), productSizeName, orderPrice, quantity, discount,notes, orderAddress, orderPhone, amount, userId);
+                OrderDetail orderDetail = new OrderDetail(orderId, orderName, orderStatusName, orderDate, new Product(productName), productSizeName, orderPrice, quantity, discount, notes, orderAddress, orderPhone, amount, userId);
                 list.add(orderDetail);
             }
             rs.close();
