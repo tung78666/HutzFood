@@ -82,7 +82,7 @@ public class InStoreOrder extends HttpServlet {
             String mess = (String) session.getAttribute("message");
             System.out.println(mess);
             if (session.getAttribute("message") == null) {
-                String message="";
+                String message = "";
                 if (((User) session.getAttribute("account")) == null) {
                     message = "Your Login Session has ended please login.";
                 }
@@ -169,7 +169,6 @@ public class InStoreOrder extends HttpServlet {
                 od.insertOrderInStore(name, phone, address, note, discount, new Date(), user, map);
                 OnlineBankingPayOS(request, response, map);
             }
-//            
         }
 
     }

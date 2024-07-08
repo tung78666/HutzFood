@@ -7,6 +7,11 @@ package Controller;
 import DAO.OrderDAO;
 import Model.ProductDTO;
 import Model.User;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lib.payos.PayOS;
+import com.lib.payos.type.ItemData;
+import com.lib.payos.type.PaymentData;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,6 +20,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +42,7 @@ public class OrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -98,20 +104,12 @@ public class OrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String name = request.getParameter("name");
+        String pm = request.getParameter("pm");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String note = request.getParameter("note");
         HttpSession session = request.getSession();
         List<ProductDTO> map = (List<ProductDTO>) session.getAttribute("map");
-        session.removeAttribute("map");
-        Cookie[] cookies = request.getCookies();
-        for (Cookie i : cookies) {
-            if (i.getName().equals("map")) {
-                i.setMaxAge(0);
-                response.addCookie(i);
-                break;
-            }
-        }
         double total = 0;
         User user = (User) session.getAttribute("account");
         for (ProductDTO i : map) {
@@ -131,8 +129,56 @@ public class OrderController extends HttpServlet {
             od.updateUser(0, user.getId());
         }
 
-        od.insertOrder(name, phone, address, note, discount, new Date(), user, map);
-        response.sendRedirect("Home");
+        if (Integer.parseInt(pm) == 1) {
+            session.removeAttribute("map");
+            Cookie[] cookies = request.getCookies();
+            for (Cookie i : cookies) {
+                if (i.getName().equals("map")) {
+                    i.setMaxAge(0);
+                    response.addCookie(i);
+                    break;
+                }
+            }
+            od.insertOrder(name, phone, address, note, discount, new Date(), user, map);
+            response.sendRedirect("Home");
+
+        } else if (Integer.parseInt(pm) == 2) {
+            od.insertOrder(name, phone, address, note, discount, new Date(), user, map);
+            OnlineBankingPayOS(request, response, map);
+        }
+    }
+
+    protected void OnlineBankingPayOS(HttpServletRequest request, HttpServletResponse response, List<ProductDTO> map)
+            throws ServletException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            final PayOS payOS = ConstantsPayOS.getPayOS();
+//                final String productName = "Mì tôm hảo hảo ly";
+            final String description = "Thanh toan don hang";
+            final String returnUrl = "http://localhost:8080/HutzFood/webCheckOut-GET";
+            final String cancelUrl = "http://localhost:8080/HutzFood/webCheckOut-POST";
+//                final int price = 10000;
+
+            // Gen order code
+            String currentTimeString = String.valueOf(new Date().getTime());
+            int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
+            List<ItemData> itemList = new ArrayList<>();
+            double total = 0;
+            for (ProductDTO i : map) {
+                double price = i.getProduct().getPrice() + (i.getProductSize() == null ? 0 : i.getProductSize().getPrice());
+                ItemData item = new ItemData(i.getProduct().getName(), i.getQuantity(), (int) (price * 1000));
+                itemList.add(item);
+                total += price * i.getQuantity();
+            }
+            PaymentData paymentData = new PaymentData(orderCode, (int) total * 1000, description, itemList, cancelUrl, returnUrl);
+            JsonNode data = payOS.createPaymentLink(paymentData);
+            String checkoutUrl = data.get("checkoutUrl").asText();
+            response.setHeader("Location", checkoutUrl);
+            response.setStatus(HttpServletResponse.SC_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while creating the payment link.");
+        }
     }
 
     /**

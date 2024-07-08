@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
-<!--    <filter-mapping>
+    <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/OrderList</url-pattern>
@@ -264,6 +264,14 @@
         <servlet-name>OnlineCheckOut</servlet-name>
         <servlet-class>Controller.OnlineCheckOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>orderRecieveUpdate</servlet-name>
+        <servlet-class>Controller.orderRecieveUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>webCheckOut</servlet-name>
+        <servlet-class>Controller.webCheckOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -300,10 +308,10 @@
         <filter-name>AuthorizationFilter</filter-name>
         <filter-class>Filter.AuthorizationFilter</filter-class>
     </filter>
-<!--    <filter>
+    <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>Filter.LoginFilter</filter-class>
-    </filter>-->
+    </filter>
     <servlet-mapping>
         <servlet-name>ProductDetails</servlet-name>
         <url-pattern>/ProductDetails</url-pattern>
@@ -483,6 +491,18 @@
     <servlet-mapping>
         <servlet-name>OnlineCheckOut</servlet-name>
         <url-pattern>/OnlineCheckOut-POST</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>orderRecieveUpdate</servlet-name>
+        <url-pattern>/orderRecieveUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>webCheckOut</servlet-name>
+        <url-pattern>/webCheckOut-GET</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>webCheckOut</servlet-name>
+        <url-pattern>/webCheckOut-POST</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
