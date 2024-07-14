@@ -39,6 +39,21 @@
                 <span class="text">Change Role User</span>
             </a>
         </li>
+        
+          <li class="active">
+            <a href="EditStoreProfile">
+               <i class='bx bxs-edit'></i>
+                <span class="text">Edit Store Profile</span>
+            </a>
+        </li>
+        
+          <li class="active">
+            <a href="ManagerAbsent">
+               <i class='bx bxs-calendar'></i>
+                <span class="text">AbsentManager</span>
+            </a>
+        </li>
+        
         <li>
             <a href="LogOut" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>

@@ -68,7 +68,7 @@
                         </li>
                         <li class="nav-item">
                             <c:if test="${sessionScope['account'].getRole().getId() == 1}">
-                                <a href="AdminDashbord" class="nav-link" >MANAGER PAGE</a>
+                                <a href="AdminDashbroad" class="nav-link" >MANAGER PAGE</a>
                             </c:if>
                         </li>
 

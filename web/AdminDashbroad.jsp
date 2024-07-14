@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +17,7 @@
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <title>Admin Dashboard</title>
+        
         <script>
 
                 $(document).ready(function () {

@@ -175,9 +175,9 @@ public class BlogDao extends DBContext {
         return list;
     }
 
-//    public static void main(String[] args) {
-//        BlogDao bld = new BlogDao();
-//        List<Blog> list = bld.getBlogs();
-//        System.out.println(list.get(0).getBlog_id());
-//    }
+    public static void main(String[] args) {
+        BlogDao bld = new BlogDao();
+        List<Blog> list = bld.getBlogs();
+        System.out.println(list.get(0).getBlog_id());
+    }
 }
