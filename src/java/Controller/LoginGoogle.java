@@ -77,6 +77,7 @@ public class LoginGoogle extends HttpServlet {
             }
         } else {
             System.out.println("User verification failed: " + user);
+            request.setAttribute("mess", "User not existed!!!");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
     }

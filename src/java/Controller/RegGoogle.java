@@ -49,6 +49,12 @@ public class RegGoogle extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        if (request.getParameter("error") != null) {
+            if (request.getParameter("error").equals("access_denied")) {
+                request.setAttribute("messregis", "Failed to register with Google");
+                request.getRequestDispatcher("Register.jsp").forward(request, response);
+            }
+        }
         UserDAO udao = new UserDAO();
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
@@ -58,7 +64,7 @@ public class RegGoogle extends HttpServlet {
         MD5 md5 = new MD5();
         if (userI != null) {
             request.setAttribute("messregis", "User existed!!!");
-//            request.getRequestDispatcher("Register.jsp").forward(request, response);
+            request.getRequestDispatcher("Register.jsp").forward(request, response);
         } else {
             try{
                 udao.regUser(userG.getName(), userG.getEmail(), md5.getMd5(generateRandomString(8)), new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"), null);
