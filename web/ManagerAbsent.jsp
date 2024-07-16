@@ -98,6 +98,7 @@
                                 <td>
                                     <c:if test="${absent.status == 'Pending'}">
                                         <button class="btn btn-success confirm-absent" data-id="${absent.id}"><i class='bx bx-check'></i></button>
+                                        <span>sss</span>
                                         <button class="btn btn-danger reject-absent" data-id="${absent.id}"><i class='bx bx-x'></i></button>
                                     </c:if>
                                 </td>

@@ -65,7 +65,7 @@ public class AdminDAO extends DBContext {
             sql += " AND a.Status = ?";
         }
 
-        sql += " ORDER BY a.DateAbsent OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+        sql += " ORDER BY a.DateAbsent desc OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
