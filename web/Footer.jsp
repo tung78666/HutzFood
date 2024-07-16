@@ -56,11 +56,10 @@
 
                             <div class="block-23 mb-3">
                                 <ul>
-                                    <li><span class="icon icon-map-marker"></span><span class="text">Khu Giáo dục và Đào tạo – Khu Công nghệ cao Hòa Lạc – 
-                                            Km29 Đại lộ Thăng Long, Thạch Thất, TP. Hà Nội  </span></li>
-                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+84 74231 071</span></a></li>
+                                    <li><span class="icon icon-map-marker"></span><span class="text">${store.address} </span></li>
+                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">${store.phone}</span></a></li>
                                     <li><a href="#"><span class="icon icon-envelope"></span><span
-                                                class="text">nguyenlanngoc@gmail.com</span></a></li>
+                                                class="text">${store.email}</span></a></li>
                                 </ul>
                             </div>
                         </div>

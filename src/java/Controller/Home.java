@@ -5,12 +5,14 @@
 package Controller;
 
 
+import DAO.AdminDAO;
 import DAO.ProductDAO;
 import DAO.ProductSizeDao;
 import DAO.UserDAO;
 import Model.Product;
 import Model.ProductDTO;
 import Model.ProductSize;
+import Model.Store;
 import Model.User;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
@@ -46,6 +48,7 @@ public class Home extends HttpServlet {
 //        try ( PrintWriter out = response.getWriter()) {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("account");
+        AdminDAO adminDAO = new AdminDAO();
         ProductDAO pdao = new ProductDAO();
         ProductSizeDao pdsizeDAO = new ProductSizeDao();
         ArrayList<Product> plist = pdao.getProduct("", "", 1, "1");
@@ -82,6 +85,9 @@ public class Home extends HttpServlet {
             }
         }
         session.setAttribute("map", map);
+        Store store = adminDAO.getStoreInfor();
+        request.setAttribute("store", store);
+        
         request.getRequestDispatcher("Home.jsp").forward(request, response);
 
 //        } catch (Exception e) {

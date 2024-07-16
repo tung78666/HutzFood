@@ -40,13 +40,13 @@
     <body>
         <jsp:include page="header.jsp"/>      
         <section class="home-slider owl-carousel">
-            <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+            <div class="slider-item" style="background-image: url(${store.image});">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                         <div class="col-md-8 col-sm-12 text-center ftco-animate">
                             <span class="subheading">Welcome</span>
-                            <h1 class="mb-4">To HUTZFOOD</h1>
+                            <h1 class="mb-4">To ${store.storeName}</h1>
                             <p class="mb-4 mb-md-5"></p>
                             <p><a href="ProductLists"
                                   class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
@@ -62,7 +62,7 @@
 
                         <div class="col-md-8 col-sm-12 text-center ftco-animate">
                             <span class="subheading">Welcome</span>
-                            <h1 class="mb-4">To HUTZFOOD</h1>
+                            <h1 class="mb-4">To ${store.storeName}</h1>
                             <p class="mb-4 mb-md-5"></p>
                             <p><a href="ProductLists"
                                   class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
@@ -79,7 +79,7 @@
 
                         <div class="col-md-8 col-sm-12 text-center ftco-animate">
                             <span class="subheading">Welcome</span>
-                            <h1 class="mb-4">To HUTZFOOD</h1>
+                            <h1 class="mb-4">To ${store.storeName}</h1>
                             <p class="mb-4 mb-md-5"></p>
                             <p><a href="ProductLists"
                                   class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
@@ -110,7 +110,7 @@
                     <div class="col-md-7 heading-section ftco-animate text-center">
                         <span class="subheading">Discover</span>
                         <h2 class="mb-4">NEW PRODUCT</h2>
-                        <p>We are thrilled to introduce our latest offerings! Dive into the diverse and exciting world of fast food, where we bring you the most unique and delicious selections.</p>
+                        <p>${store.introduction}</p>
                     </div>
                 </div>
                 <div class="row">     
