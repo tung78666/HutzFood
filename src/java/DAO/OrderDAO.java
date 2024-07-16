@@ -18,10 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author kienb
- */
 public class OrderDAO extends DBContext {
 
     public void insertOrder(String name, String phone, String address, String note, int discount, Date date, User user, List<ProductDTO> map) {
@@ -208,6 +204,22 @@ public class OrderDAO extends DBContext {
         try {
             String xSQL = "Select top 1 * from [Order] order by order_id desc";
             PreparedStatement ps = connection.prepareStatement(xSQL);
+            ResultSet rs = ps.executeQuery();
+            int id = -99;
+            if (rs.next()) {
+                id = rs.getInt("order_id");
+            }
+            return id;
+        } catch (Exception e) {
+
+        }
+        return -99;
+    }
+    public int getIDLatestOrderOfUser(int userID) {
+        try {
+            String xSQL = "Select top 1 * from [Order] where user_id = ? order by order_id desc ";
+            PreparedStatement ps = connection.prepareStatement(xSQL);
+            ps.setInt(1, userID);
             ResultSet rs = ps.executeQuery();
             int id = -99;
             if (rs.next()) {

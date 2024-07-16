@@ -9,17 +9,15 @@ import DAO.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Dan09
  */
-public class webCheckOut extends HttpServlet {
+public class orderRecieveUpdate extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,16 +30,10 @@ public class webCheckOut extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet webCheckOut</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet webCheckOut at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String id = request.getParameter("id");
+            OrderDAO od = new OrderDAO();
+            od.UpdateStatusOrder(4, Integer.parseInt(id));
+            response.sendRedirect("myorder");
         }
     } 
 
@@ -56,23 +48,7 @@ public class webCheckOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String path = request.getServletPath();
-        HttpSession session = request.getSession();
-        if ("/webCheckOut-GET".equals(path)) {
-            //Success
-            session.removeAttribute("map");
-            Cookie[] cookies = request.getCookies();
-            for (Cookie i : cookies) {
-                if (i.getName().equals("map")) {
-                    i.setMaxAge(0);
-                    response.addCookie(i);
-                    break;
-                }
-            }
-            response.sendRedirect("Comfirm_Order");
-        } else if ("/webCheckOut-POST".equals(path)) {
-            doPost(request, response);
-        }
+        processRequest(request, response);
     } 
 
     /** 
@@ -85,9 +61,7 @@ public class webCheckOut extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int orderID=new OrderDAO().getIDLatestOrder();
-        new OrderDAO().UpdateStatusOrder(5, orderID);
-        response.sendRedirect("cart");
+        processRequest(request, response);
     }
 
     /** 

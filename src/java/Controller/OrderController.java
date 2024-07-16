@@ -140,7 +140,7 @@ public class OrderController extends HttpServlet {
                 }
             }
             od.insertOrder(name, phone, address, note, discount, new Date(), user, map);
-            response.sendRedirect("Home");
+            response.sendRedirect("Comfirm_Order");
 
         } else if (Integer.parseInt(pm) == 2) {
             od.insertOrder(name, phone, address, note, discount, new Date(), user, map);
