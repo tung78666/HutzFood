@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ProductLists
-    Created on : May 27, 2023, 11:34:41 AM
-    Author     : Hoàng Vũ
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -66,7 +60,15 @@
                     </div>
                 </div>
 
-                <div class="row d-md-flex">
+                <div class="row d-md-flex" style="padding-top: 100px">
+                    <div class="category-buttons" style="margin-top: -94px;margin-bottom: -41px;">
+                        <select style="background-color: black;color: wheat;height: 40px;border-radius: 10px;margin-left: 47px;margin-top: 53px;" class="category-button" name="sortC" onchange="test(this)">
+                            <option value="-1" ${param['sortC']==-1 ?"selected":""}>All</option>
+                            <c:forEach items="${requestScope.clist}" var="i" varStatus="idx">
+                                <option value="${i.getId()}" ${param['sortC']== i.getId() ?"selected":""}>${i.getName()}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                     <form action="ProductLists"  method="get" style="
                           margin-top: -94px;
                           margin-bottom: -41px;">
@@ -91,19 +93,23 @@
                                 <div class="tab-content ftco-animate" id="v-pills-tabContent">
 
                                     <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
-                                        <div class="row">
+                                        <div class="product-list" id="prod-list">
                                             <c:forEach var="p" items="${plist}">
-                                                <div class="col-md-4 text-center">
+                                                <div class="product-item" id="prod">
+                                                    <div hidden class="prod-cate">${p.getCategory().getId()}</div>
                                                     <div class="menu-wrap">
-                                                        <a href="./ProductDetails?pid=${p.getId()}&mode=0" class="menu-img img mb-4" style="background-image: url(${p.getImage()});"></a>
+                                                        <a href="./ProductDetails?pid=${p.getId()}&mode=0">
+                                                            <img src="${p.getImage()}" alt="${p.getName()}" class="menu-img mb-4">
+                                                        </a>
+
                                                         <div class="text">
-                                                            <h3><a href="./ProductDetails?pid=${p.getId()}&mode=0">${p.getName()}</a></h3>		
+                                                            <h3><a href="./ProductDetails?pid=${p.getId()}&mode=0">${p.getName()}</a></h3>
                                                             <p style="color: #fff" class="price">Price:<span class="priceSpan">${p.getPrice()}</span>đ</p>
                                                             <p><a href="./ProductDetails?pid=${p.getId()}&mode=0" class="btn btn-primary btn-outline-primary">Order</a></p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </c:forEach>
+                                            </c:forEach> 
                                         </div>
                                     </div>
                                 </div>
@@ -154,15 +160,62 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
         <script src="js/google-map.js"></script>
         <script src="js/main.js"></script>
-        <script>
-                               var priceSpans = document.querySelectorAll(".priceSpan");
+        <style>
+            .product-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around; /* Ensures even spacing */
+                gap: 20px; /* Adjusts the space between items */
+            }
 
-                               priceSpans.forEach(function (span) {
-                                   var price = parseFloat(span.textContent);
-                                   var formattedPrice = price.toFixed(3); // Định dạng giá trị với 3 số 0 sau dấu chấm
-                                   span.textContent = formattedPrice;
-                               });
+            .product-item {
+                flex: 1 1 calc(33.333% - 20px); /* Adjusts the width of each item */
+                box-sizing: border-box;
+                text-align: center;
+            }
+
+            .menu-wrap {
+                margin-bottom: 20px; /* Adds space at the bottom of each product */
+            }
+
+            .menu-img {
+                display: block;
+                width: 100%;
+                height: 270px; /* Sets the fixed height */
+                background-size: cover; /* Ensures the image covers the entire area */
+                background-position: center; /* Centers the image */
+                object-fit: cover; /* Ensures the image covers the entire area */
+            }
+        </style>
+        <script>
+                                    var priceSpans = document.querySelectorAll(".priceSpan");
+
+                                    priceSpans.forEach(function (span) {
+                                        var price = parseFloat(span.textContent);
+                                        var formattedPrice = price.toFixed(3); // Định dạng giá trị với 3 số 0 sau dấu chấm
+                                        span.textContent = formattedPrice;
+                                    });
+
+                                    function test(selectElement) {
+                                        const filter = selectElement.value;
+                                        const items = document.querySelectorAll('#prod-list #prod');
+                                        if (filter !== '-1') {
+                                            items.forEach(item => {
+                                                const text = item.querySelector('.prod-cate').textContent.toLowerCase();
+                                                if (text.includes(filter)) {
+                                                    item.hidden = false;
+                                                } else {
+                                                    item.hidden = true;
+                                                }
+                                            });
+                                        } else {
+                                            items.forEach(item => {
+                                                item.hidden = false;
+                                            });
+                                        }
+                                    }
         </script>
 
     </body>
 </html>
+
