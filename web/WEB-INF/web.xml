@@ -275,9 +275,9 @@
         <servlet-class>Controller.webCheckOut</servlet-class>
     </servlet>
     <servlet>
- <servlet-name>Comfirm_Order</servlet-name>
- <servlet-class>Controller.Comfirm_Order</servlet-class>
- </servlet>
+        <servlet-name>Comfirm_Order</servlet-name>
+        <servlet-class>Controller.Comfirm_Order</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>EditStoreProfileController</servlet-name>
         <servlet-class>Controller.EditStoreProfileController</servlet-class>
@@ -534,12 +534,12 @@
     <servlet-mapping>
         <servlet-name>webCheckOut</servlet-name>
         <url-pattern>/webCheckOut-POST</url-pattern>
-          </servlet-mapping>
-          <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Comfirm_Order</servlet-name>
         <url-pattern>/Comfirm_Order</url-pattern>
     </servlet-mapping>
-          <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>EditStoreProfileController</servlet-name>
         <url-pattern>/EditStoreProfile</url-pattern>
     </servlet-mapping>

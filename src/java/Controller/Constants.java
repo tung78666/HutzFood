@@ -9,7 +9,7 @@ package Controller;
  * @author Dan09
  */
 public class Constants {
-
+//Base 64 : ID and secret Q2xpZW50IElECjI3ODA5NTgzNTg4Mi1wNDVnazJyMzRsYWxuOGl0a3Y2Y3NqMnJtN29hMHNzYy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbQpfX18KQ2xpZW50IHNlY3JldApHT0NTUFgtRWN0TTdIOWRlT09ja3l4c0p5YWNtVzRTdEZETQ==
     public static String GOOGLE_CLIENT_ID = "";
 
     public static String GOOGLE_CLIENT_SECRET = "";

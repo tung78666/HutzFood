@@ -96,7 +96,7 @@
                                                                 <td>${i.status.name}</td>
                                                                 <td><a href="orderDetail?id=${i.id}">Detail</a></td>
                                                                 <c:if test="${i.status.id == 3}">
-                                                                    <td><a href="changeStatus?id=${i.id}">Order Recieved</a></td>
+                                                                    <td><a href="orderRecieveUpdate?id=${i.id}">Order Recieved</a></td>
                                                                 </c:if>
                                                                 <c:if test="${i.status.id == 1}">
                                                                     <td><a href="changeStatus?id=${i.id}">Cancel</a></td>
