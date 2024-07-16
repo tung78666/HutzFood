@@ -1,3 +1,44 @@
-/build/
-/dist/
-/private/
+# Bỏ qua các thư mục build
+build/
+dist/
+out/
+target/
+nbproject
+
+# Bỏ qua các tệp và thư mục được tạo bởi IDE
+.vscode/
+.idea/
+*.iml
+
+# Bỏ qua các tệp nhị phân
+*.class
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Bỏ qua các tệp log
+*.log
+
+# Bỏ qua các tệp tạm thời
+*.tmp
+*.swp
+*.bak
+*.old
+
+# Bỏ qua các tệp cấu hình hệ thống
+.DS_Store
+Thumbs.db
+
+# Bỏ qua các tệp node_modules (đối với dự án Node.js)
+node_modules/
+
+# Bỏ qua các tệp môi trường ảo Python
+venv/
+__pycache__/
+*.pyc
+
+# Bỏ qua các tệp build cho dự án Java
+*.jar
+*.war
+*.ear
