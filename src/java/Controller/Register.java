@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author ducnt
+ * @author asus
  */
 public class Register extends HttpServlet {
 
@@ -46,23 +46,22 @@ public class Register extends HttpServlet {
             String email = request.getParameter("email");
             String pass = request.getParameter("pass");
             String dateOfBirth = request.getParameter("DOB");
-//            System.out.println(dateOfBirth);
             String phoneNum = request.getParameter("phone");
             String confirmpass = request.getParameter("confirmpass");
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             Date date = formatter.parse(dateOfBirth);
-//            System.out.println(emailFormat(email));
-//            System.out.println(nameFormat(name));
-//            System.out.println(nameFormat(name));
-//            System.out.println(pass.equals(confirmpass));
+            System.out.println(emailFormat(email));
+            System.out.println(nameFormat(name));
+            System.out.println(nameFormat(name));
+            System.out.println(pass.equals(confirmpass));
             if (!nameFormat(name)) {
                 request.setAttribute("messregis", "Invalid name.Please Try again!");
                 setData(request, name, email, pass, dateOfBirth, phoneNum, confirmpass);
                 throw new Exception();
-            } else if (!isValidPhoneNumber(phoneNum)) {
-                request.setAttribute("messregis", "Invalid Phone Number.Please Try again!");
-                setData(request, name, email, pass, dateOfBirth, phoneNum, confirmpass);
-                throw new Exception();
+//            } else if (!isValidPhoneNumber(phoneNum)) {
+//                request.setAttribute("messregis", "Invalid Phone Number.Please Try again!");
+//                setData(request, name, email, pass, dateOfBirth, phoneNum, confirmpass);
+//                throw new Exception();
             } else if (!emailFormat(email)) {
                 request.setAttribute("messregis", "Invalid Email.Please Try again!");
                 setData(request, name, email, pass, dateOfBirth, phoneNum, confirmpass);
@@ -98,15 +97,14 @@ public class Register extends HttpServlet {
     }
 
     public boolean emailFormat(String email) {
-    // Regex to support valid email format with allowed domains
-    String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(\\.edu\\.vn)?$";
-    Pattern pattern = Pattern.compile(EMAIL_REGEX);
-    Matcher matcher = pattern.matcher(email);
-    return matcher.matches();
-}
+        String EMAIL_REGEX = "^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\\.(com|fpt\\.edu\\.vn)$";
+        Pattern pattern = Pattern.compile(EMAIL_REGEX);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 
     public boolean nameFormat(String name) {
-        String NAME_REGEX = "^(?=.*\\S)[\\p{L}0-9 ]{7,}$";
+        String NAME_REGEX = "^(?=.*\\S)[A-Za-z0-9 ]{7,}$";
         Pattern pattern = Pattern.compile(NAME_REGEX);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();
@@ -114,7 +112,7 @@ public class Register extends HttpServlet {
 
     public static boolean isValidPhoneNumber(String phoneNumber) {
         // Regular expression to validate phone numbers
-        String regex = "^\\+?[0-9]{1,3}?[ -]?\\(?[0-9]{3}\\)?[ -]?[0-9]{3}[ -]?[0-9]{3}$";
+        String regex = "^\\+?[0-9]{1,3}?[ -]?\\(?[0-9]{3}\\)?[ -]?[0-9]{3}[ -]?[0-9]{4}$";
 
         // Compile the regular expression
         Pattern pattern = Pattern.compile(regex);

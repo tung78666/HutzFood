@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author Ngocnl
+ * @author kienb
  */
 public class CartDetailController extends HttpServlet {
    

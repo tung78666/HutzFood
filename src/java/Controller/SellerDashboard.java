@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package Controller;
 
 import DAO.OrderDAO;
@@ -25,7 +26,7 @@ public class SellerDashboard extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
        OrderDAO dao = new OrderDAO(); 
-       ArrayList<Order> list = dao.getOrder2Process(); 
+       ArrayList<Order> list = dao.getOrderProcess(); 
        ArrayList<OrderStatus> otlist  =dao.getOrderSt(); 
        request.setAttribute("olist", list);
        request.setAttribute("otlist", otlist);

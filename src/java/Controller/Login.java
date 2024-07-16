@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ducnt
+ * @author HC
  */
 public class Login extends HttpServlet {
 
@@ -47,26 +47,20 @@ public class Login extends HttpServlet {
 
             //IF remember me is checked then save cookies of the user
             rememberAcc(response, email, userI.getPassword(), token, rem);
-            session.setAttribute("rememberToken", token);
         } else if (getCookieValue(request, "crem") != null && userI == null) {
-            //Check if the token that act as password has been changed or not
-            if (pass.equals(getCookieValue(request, "ctoken"))) {
-                userI = userList.stream()
-                        .filter(user -> user.getEmail().equals(email)
-                        && user.getUserStatus().getId() == 1
-                        && user.getPassword().equals(getCookieValue(request, "cpass"))
-                        )
-                        .findFirst().orElse(null);
-                if (userI != null) {
-                    //Gen a random token fake as password
-                    String token = generateRandomString(pass.length());
+            userI = userList.stream()
+                    .filter(user -> user.getEmail().equals(email)
+                    && user.getUserStatus().getId() == 1
+                    && user.getPassword().equals(getCookieValue(request, "cpass"))
+                    )
+                    .findFirst().orElse(null);
+            if (userI != null) {
+                //Gen a random token fake as password
+                String token = generateRandomString(pass.length());
 
-                    //IF remember me is checked then save cookies of the user
-                    rememberAcc(response, email, getCookieValue(request, "cpass"), token, rem);
-                    session.setAttribute("rememberToken", token);
-                }
+                //IF remember me is checked then save cookies of the user
+                rememberAcc(response, email, getCookieValue(request, "cpass"), token, rem);
             }
-
         }
 
         //IF found then go to the page base on user role
@@ -74,7 +68,7 @@ public class Login extends HttpServlet {
             switch (userI.getRole().getId()) {
                 case 1:
                     session.setAttribute("account", userI);
-                    response.sendRedirect("AdminDashbroad");
+                    response.sendRedirect("AdminDashbord");
                     break;
                 case 2:
                     session.setAttribute("account", userI);

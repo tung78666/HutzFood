@@ -1,43 +1,29 @@
 
 <section id="sidebar">
     <a href="Home" class="brand">
-        <i class='bx bx-home-alt-2' style='color:#3c91e6' ></i>
-        <span class="text">Huzt Workshop</span>
+        <i class='bx bxs-coffee'></i>
+        <span class="text">Coffee Blend</span>
     </a>
     <ul class="side-menu top">
         <li class="active">
-            <a href="InStoreOrder">
-                <i class='bx bxs-dashboard' ></i>
-                <span class="text">In-Store Order</span>
-            </a>
-        </li>
-        <li class="active">
             <a href="SellerDashboard">
                 <i class='bx bxs-dashboard' ></i>
-                <span class="text">Order Manage</span>
+                <span class="text">Seller Manage</span>
             </a>
         </li>
 
         <li class="active">
             <a href="ManageBlog">
                <i class='bx bxs-dashboard' ></i>
-                <span class="text">Blog Manage</span>
+                <span class="text">Manage Blog</span>
             </a>
         </li>
         <li class="active">
             <a href="ManageOrder">
                 <i class='bx bxs-dashboard' ></i>
-                <span class="text">Invoice Manage</span>
+                <span class="text">Manage Order</span>
             </a>
         </li>
-        
-        <li class="active">
-            <a href="AddAbsent">
-                <i class='bx bxs-dashboard' ></i>
-                <span class="text">Register absent</span>
-            </a>
-        </li>
-        
         <li>
             <a href="LogOut" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>

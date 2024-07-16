@@ -17,7 +17,7 @@ public class BlogDao extends DBContext {
 
     public Blog getBlogByBlogId(int blogId) {
         Blog blog = null;
-        String sql = "select b.blog_id, b.blog_title, b.blog_image, b.user_id, b.[post date], b.Content\n"
+        String sql = "select b.blog_id, b.blog_title, b.blog_image, u.user_name, b.[post date], b.Content\n"
                 + "from [blog] b inner join [users] u on b.user_id = b.user_id\n"
                 + "where b.blog_id =?   ";
         try {
@@ -25,7 +25,7 @@ public class BlogDao extends DBContext {
             ps.setInt(1, blogId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                blog = new Blog(rs.getInt(1), rs.getString(2), rs.getString(3), new UserDAO().getUserById(rs.getInt(4)), rs.getDate(5), rs.getString(6));
+                blog = new Blog(rs.getInt(1), rs.getString(2), rs.getString(3), new User(rs.getString(4)), rs.getDate(5), rs.getString(6));
                 return blog;
             }
         } catch (Exception e) {
@@ -175,9 +175,9 @@ public class BlogDao extends DBContext {
         return list;
     }
 
-    public static void main(String[] args) {
-        BlogDao bld = new BlogDao();
-        List<Blog> list = bld.getBlogs();
-        System.out.println(list.get(0).getBlog_id());
-    }
+//    public static void main(String[] args) {
+//        BlogDao bld = new BlogDao();
+//        List<Blog> list = bld.getBlogs();
+//        System.out.println(list.get(0).getBlog_id());
+//    }
 }

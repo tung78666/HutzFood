@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>${p.getName()}</title>
+        <title>Coffee</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -86,7 +86,8 @@
                         <h3>${p.getName()}</h3>
 
                         <p class="price">
-                        <p style="font-size: 30px; color: #f8b500;"><span style="color:#f8b500;" id="product-price">${p.getPrice()}</span>,000đ</p>
+                        <p style="    font-size: 30px;
+                           color: #f8b500;"><span style="color:#f8b500 " id="product-price">${p.getPrice()}</span>,000đ</p>
                         <span id="selected-size-price" style="display: none;"></span>
                         </p>
 
@@ -121,7 +122,6 @@
                                 </div>
                             </div>
                             <input type="hidden" value="${p.getId()}" name="pid">
-                            <p style="color: red;background-color: ${empty requestScope.mess ? 'transparent' : '#FFF'};border-radius: 3px;display: inline-block; padding: 5px; font-weight: bold;">${requestScope.mess}</p>
                             <p><input type="submit" value="Add to Cart" class="btn btn-primary py-3 px-5"></p>
                         </form>
                     </div>
@@ -133,7 +133,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ftco-animate">
-                        <c:if test="${sessionScope['account']!=null && index == 1}">
+                        <c:if test="${sessionScope['account']!=null}">
                             <div class="comment-form-wrap pt-5">
                                 <form action="FeedbackController" method="post">
                                     <h3 class="mb-5">${sessionScope['account'].getName()}</h3>

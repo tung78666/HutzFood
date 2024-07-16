@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  *
- * @author khailt
+ * @author asus
  */
 public class LogOut extends HttpServlet {
     

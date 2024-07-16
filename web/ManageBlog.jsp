@@ -16,10 +16,10 @@
         <!-- Boxicons -->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- My CSS -->
-        <link rel="stylesheet" href="CSSsimple/adminDashbroad.css">
+        <link rel="stylesheet" href="CSSsimple/adminDashbord.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/nice-select.css" rel="stylesheet">
-        <title>Blog management</title>     
+        <title>Coffee</title>     
            <script src="ckeditor/ckeditor.js"></script> 
         <script src="ckfinder/ckfinder.js"></script>
         <title>Seller Dashbord</title>   
@@ -80,7 +80,7 @@
             <main>
                 <div class="head-title">
                     <div class="left">
-                        <h1>Blogs Manage</h1>
+                        <h1>Manage Blogs</h1>
                     </div>
                     <div>
                         <form action="ManageBlog" method="post" onsubmit="return checkDate();">

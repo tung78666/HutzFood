@@ -268,7 +268,7 @@ public class ProductDAO extends DBContext {
         }
     }
 
-    public ArrayList<Product> getAll() {
+    public ArrayList<Product> getAllProductByStatus() {
         ArrayList<Product> list = new ArrayList<>();
         String sql = "select p.product_id, p.product_name, p.product_price"
                 + ", c.category_id, c.category_name,ps.PdStatus_id"

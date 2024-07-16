@@ -3,13 +3,12 @@
     Created on : May 17, 2023, 8:04:59 PM
     Author     : asus
 --%>
-    
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-    <head>  
+    <head>
         <title>Home Screen</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -110,7 +109,9 @@
                     <div class="col-md-7 heading-section ftco-animate text-center">
                         <span class="subheading">Discover</span>
                         <h2 class="mb-4">NEW PRODUCT</h2>
-                        <p>We are thrilled to introduce our latest offerings! Dive into the diverse and exciting world of fast food, where we bring you the most unique and delicious selections.</p>
+                        <p>We are very excited to introduce the latest products to you. 
+                            Immerse yourself in the diverse and sophisticated world of coffee, 
+                            we offer the most unique and interesting selections</p>
                     </div>
                 </div>
                 <div class="row">     

@@ -1,63 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/OrderList</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/OrderDetails</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/PostList</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/PostDetails</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/SellerDashboard</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/UsersList</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/ManageUserInfo</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/UserDetails</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/SettingList</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/SettingDetails</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/AdminDashbroad</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/SellerProductDetails</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/AdminDashbroad</url-pattern>
-    </filter-mapping>
-
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>Controller.Register</servlet-class>
@@ -135,8 +77,8 @@
         <servlet-class>Controller.EditProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminDashbroad</servlet-name>
-        <servlet-class>Controller.AdminDashbroad</servlet-class>
+        <servlet-name>AdminDashbord</servlet-name>
+        <servlet-class>Controller.AdminDashbord</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerUser</servlet-name>
@@ -160,7 +102,7 @@
     </servlet>
     <servlet>
         <servlet-name>DeleteController</servlet-name>
-        <servlet-class>Controller.DeleteProduct</servlet-class>
+        <servlet-class>Controller.DeleteController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderController</servlet-name>
@@ -207,10 +149,6 @@
         <servlet-class>Controller.ManageBlog</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ManageUserInfo</servlet-name>
-        <servlet-class>Controller.ManageUserInfo</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddBlog</servlet-name>
         <servlet-class>Controller.AddBlog</servlet-class>
     </servlet>
@@ -255,53 +193,12 @@
         <servlet-class>Controller.RegGoogle</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditUserInfo</servlet-name>
-        <servlet-class>Controller.EditUserInfo</servlet-class>
+        <servlet-name>ManageFeedback</servlet-name>
+        <servlet-class>Controller.ManageFeedback</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InStoreOrder</servlet-name>
-        <servlet-class>Controller.InStoreOrder</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>OnlineCheckOut</servlet-name>
-        <servlet-class>Controller.OnlineCheckOut</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>orderRecieveUpdate</servlet-name>
-        <servlet-class>Controller.orderRecieveUpdate</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>webCheckOut</servlet-name>
-        <servlet-class>Controller.webCheckOut</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Comfirm_Order</servlet-name>
-        <servlet-class>Controller.Comfirm_Order</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditStoreProfileController</servlet-name>
-        <servlet-class>Controller.EditStoreProfileController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <servlet-class>Controller.FileUploadServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ManagerAbsentController</servlet-name>
-        <servlet-class>Controller.ManagerAbsentController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateAbsentStatusController</servlet-name>
-        <servlet-class>Controller.UpdateAbsentStatusController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetAbsentData</servlet-name>
-        <servlet-class>Controller.GetAbsentDataController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddAbsentController</servlet-name>
-        <servlet-class>Controller.AddAbsentController</servlet-class>
-
+        <servlet-name>AdminManageFeedback</servlet-name>
+        <servlet-class>Controller.AdminManageFeedback</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
@@ -339,10 +236,54 @@
         <filter-name>AuthorizationFilter</filter-name>
         <filter-class>Filter.AuthorizationFilter</filter-class>
     </filter>
-    <filter>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>Filter.LoginFilter</filter-class>
-    </filter>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/OrderList</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/OrderDetails</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/PostList</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/PostDetails</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/SellerDashboard</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/UsersList</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/UserDetails</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/SettingList</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/SettingDetails</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/AdminDashbord</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/SellerProductDetails</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/AdminDashboard</url-pattern>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>ProductDetails</servlet-name>
         <url-pattern>/ProductDetails</url-pattern>
@@ -388,8 +329,8 @@
         <url-pattern>/EditProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminDashbroad</servlet-name>
-        <url-pattern>/AdminDashbroad</url-pattern>
+        <servlet-name>AdminDashbord</servlet-name>
+        <url-pattern>/AdminDashbord</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManagerUser</servlet-name>
@@ -460,10 +401,6 @@
         <url-pattern>/ManageBlog</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ManageUserInfo</servlet-name>
-        <url-pattern>/ManageUserInfo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AddBlog</servlet-name>
         <url-pattern>/AddBlog</url-pattern>
     </servlet-mapping>
@@ -508,60 +445,12 @@
         <url-pattern>/RegGoogle</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditUserInfo</servlet-name>
-        <url-pattern>/EditUserInfo</url-pattern>
+        <servlet-name>ManageFeedback</servlet-name>
+        <url-pattern>/ManageFeedback</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InStoreOrder</servlet-name>
-        <url-pattern>/InStoreOrder</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>OnlineCheckOut</servlet-name>
-        <url-pattern>/OnlineCheckOut-GET</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>OnlineCheckOut</servlet-name>
-        <url-pattern>/OnlineCheckOut-POST</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>orderRecieveUpdate</servlet-name>
-        <url-pattern>/orderRecieveUpdate</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>webCheckOut</servlet-name>
-        <url-pattern>/webCheckOut-GET</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>webCheckOut</servlet-name>
-        <url-pattern>/webCheckOut-POST</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Comfirm_Order</servlet-name>
-        <url-pattern>/Comfirm_Order</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditStoreProfileController</servlet-name>
-        <url-pattern>/EditStoreProfile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FileUploadServlet</servlet-name>
-        <url-pattern>/upload</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ManagerAbsentController</servlet-name>
-        <url-pattern>/ManagerAbsent</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateAbsentStatusController</servlet-name>
-        <url-pattern>/UpdateAbsentStatus</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetAbsentData</servlet-name>
-        <url-pattern>/GetAbsentData</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddAbsentController</servlet-name>
-        <url-pattern>/AddAbsent</url-pattern>
+        <servlet-name>AdminManageFeedback</servlet-name>
+        <url-pattern>/AdminManageFeedback</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

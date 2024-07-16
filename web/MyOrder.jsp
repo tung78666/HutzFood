@@ -5,7 +5,7 @@
 <html lang="en">
 
     <head>
-        <title>Order</title>
+        <title>Coffee Shop</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -47,7 +47,7 @@
                     <div class="row slider-text justify-content-center align-items-center">
 
                         <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                            <h1 class="mb-3 mt-5 bread">My Order</h1>
+                            <h1 class="mb-3 mt-5 bread">Cart</h1>
                             <p class="breadcrumbs"><span class="mr-2"><a href="Home">Home</a></span> <span>My Order</span>
                             </p>
                         </div>
@@ -64,8 +64,6 @@
                         <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
                         <li role="presentation"><a href="#process" aria-controls="process" role="tab" data-toggle="tab">Processing</a></li>
                         <li role="presentation"><a href="#approve" aria-controls="approve" role="tab" data-toggle="tab">Approve</a></li>
-                        <li role="presentation"><a href="#inqueue" aria-controls="inqueue" role="tab" data-toggle="tab">In-Queue</a></li>
-                        <li role="presentation"><a href="#complete" aria-controls="complete" role="tab" data-toggle="tab">Complete</a></li>
                         <li role="presentation"><a href="#reject" aria-controls="reject" role="tab" data-toggle="tab">Reject</a></li>
                     </ul>
 
@@ -95,9 +93,6 @@
                                                                 <td>${i.orderName}</td>
                                                                 <td>${i.status.name}</td>
                                                                 <td><a href="orderDetail?id=${i.id}">Detail</a></td>
-                                                                <c:if test="${i.status.id == 3}">
-                                                                    <td><a href="orderRecieveUpdate?id=${i.id}">Order Recieved</a></td>
-                                                                </c:if>
                                                                 <c:if test="${i.status.id == 1}">
                                                                     <td><a href="changeStatus?id=${i.id}">Cancel</a></td>
                                                                 </c:if>
@@ -199,89 +194,6 @@
                                 </div>
                             </section>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="inqueue">
-                            <section class="ftco-section ftco-cart">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12 ftco-animate">
-                                            <div class="cart-list">
-                                                <table class="table">
-                                                    <thead class="thead-primary">
-                                                        <tr class="text-center">
-                                                            <th>STT</th>
-                                                            <th>Order Date</th>
-                                                            <th>Order Name</th>
-                                                            <th>Status</th>
-                                                            <th colspan="2">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach items="${requestScope.list}" var="i" varStatus="idx">
-                                                            <c:if test="${i.status.id == 3}">
-                                                                <tr class="text-center">
-                                                                    <td>${idx.index}</td>
-                                                                    <td>${i.formatDate()}</td>
-                                                                    <td>${i.orderName}</td>
-                                                                    <td>${i.status.name}</td>
-                                                                    <td><a href="orderDetail?id=${i.id}">Detail</a></td>
-                                                                    <td><a href="orderRecieveUpdate?id=${i.id}">Order Recieved</a></td>
-                                                                </tr>
-                                                            </c:if>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-end">
-                                        <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
-                                            <p class="text-center"><a href="Home" class="btn btn-primary py-3 px-4">Back to home</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="complete">
-                            <section class="ftco-section ftco-cart">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12 ftco-animate">
-                                            <div class="cart-list">
-                                                <table class="table">
-                                                    <thead class="thead-primary">
-                                                        <tr class="text-center">
-                                                            <th>STT</th>
-                                                            <th>Order Date</th>
-                                                            <th>Order Name</th>
-                                                            <th>Status</th>
-                                                            <th colspan="2">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach items="${requestScope.list}" var="i" varStatus="idx">
-                                                            <c:if test="${i.status.id == 4}">
-                                                                <tr class="text-center">
-                                                                    <td>${idx.index}</td>
-                                                                    <td>${i.formatDate()}</td>
-                                                                    <td>${i.orderName}</td>
-                                                                    <td>${i.status.name}</td>
-                                                                    <td><a href="orderDetail?id=${i.id}">Detail</a></td>
-                                                                </tr>
-                                                            </c:if>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-end">
-                                        <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
-                                            <p class="text-center"><a href="Home" class="btn btn-primary py-3 px-4">Back to home</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
                         <div role="tabpanel" class="tab-pane" id="reject">
                             <section class="ftco-section ftco-cart">
                                 <div class="container">
@@ -300,7 +212,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach items="${requestScope.list}" var="i" varStatus="idx">
-                                                            <c:if test="${i.status.id == 5}">
+                                                            <c:if test="${i.status.id == 3}">
                                                                 <tr class="text-center">
                                                                     <td>${idx.index}</td>
                                                                     <td>${i.formatDate()}</td>

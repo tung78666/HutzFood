@@ -37,8 +37,8 @@ public class SendMailForgotPassword extends HttpServlet {
 
         // Set up mail server and authentication
         String host = "smtp.gmail.com";
-        String user = "ducnthe181789@fpt.edu.vn";
-        String password = "esnz rnng nhjb oywq";
+        String user = "toptech8868@gmail.com";
+        String password = "sjxyriefmnrchwzs";
 
         // Create properties object for the mail session
         Properties props = new Properties();
@@ -69,7 +69,6 @@ public class SendMailForgotPassword extends HttpServlet {
             // Redirect to success page
             request.getRequestDispatcher("Verify.jsp").forward(request, response);
         } catch (MessagingException e) {
-            System.out.println(e.toString());
             // Redirect to error page
             response.getWriter().print("error..get");
         }
@@ -101,8 +100,8 @@ public class SendMailForgotPassword extends HttpServlet {
             String host = "smtp.gmail.com";
 //        String user = "thegalaxy2308@gmail.com";
 //        String password = "ollvprlecgkrgzbf";
-            String user = "ducnthe181789@fpt.edu.vn";
-        String password = "esnz rnng nhjb oywq";
+            String user = "toptech8868@gmail.com";
+            String password = "sjxyriefmnrchwzs";
 
             // Create properties object for the mail session
             Properties props = new Properties();
@@ -134,7 +133,6 @@ public class SendMailForgotPassword extends HttpServlet {
                 request.getRequestDispatcher("VerifyForgotPassword.jsp").forward(request, response);
 //response.getWriter().print("success");
             } catch (MessagingException e) {
-                System.out.println(e.toString());
                 // Redirect to error page
                 response.getWriter().print("error..get");
             }

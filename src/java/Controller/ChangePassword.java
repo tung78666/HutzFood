@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author khailt
+ * @author Hoàng Vũ
  */
 public class ChangePassword extends HttpServlet {
 

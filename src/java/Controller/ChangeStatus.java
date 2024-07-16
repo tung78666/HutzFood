@@ -28,7 +28,7 @@ public class ChangeStatus extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String id = request.getParameter("id");
             OrderDAO od = new OrderDAO();
-            od.UpdateStatusOrder(5, Integer.parseInt(id));
+            od.UpdateStatusOrder(3, Integer.parseInt(id));
             response.sendRedirect("myorder");
         }
     } 

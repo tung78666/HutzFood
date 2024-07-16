@@ -19,7 +19,7 @@
         <div id="wrapper">
             <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="Home">Hutz<small>Food</small></a>
+                    <a class="navbar-brand" href="Home">Coffee<small>Blend</small></a>
                 </div>
             </nav>  
             <form action="ResetPassword" method="Post" id="form-login">

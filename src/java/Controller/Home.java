@@ -4,7 +4,6 @@
  */
 package Controller;
 
-
 import DAO.ProductDAO;
 import DAO.ProductSizeDao;
 import DAO.UserDAO;
@@ -27,7 +26,7 @@ import java.util.List;
 
 /**
  *
- * @author ducnt
+ * @author asus
  */
 public class Home extends HttpServlet {
 

@@ -8,22 +8,12 @@
 <%@ page import="Model.User" %>
 <%@ page import="Model.Role" %>
 <%@ page import="Model.UserStatus" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="CSSsample/userProfile.css">
         <%
-    // Assuming 'account' is a User object stored in the session scope
-    User account = (User) session.getAttribute("account");
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String formattedDOB = "";
-    if (account != null && account.getDOB() != null) {
-        formattedDOB =dateFormat.format(account.getDOB());
-    }
-
     // Get the user from the session
     User user = (User) session.getAttribute("account");
 
@@ -146,19 +136,18 @@
                 <h3>My Profile</h3>
                 <label class="nameprofile">Name</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getName()}" name="name"><br/>
                 <label class="emailprofile">Email</label><input readonly class="emailprofile1" value="${sessionScope['account'].getEmail()}" name="email"><br/>
-                <label class="nameprofile">Role</label><input readonly class="nameprofile1" type="text" value="<%= roleName %>" ><br/>
-                <label class="nameprofile">UserStatus</label><input readonly class="nameprofile1" type="text" value="<%= userStatusName %>"><br/>
-                <label class="nameprofile">Point</label><input readonly class="nameprofile1" type="text" value="${sessionScope['account'].getPoint()}" ><br/>
-                <label class="nameprofile">Date of Birth</label><input class="nameprofile1" placeholder="MM-DD-yyyy" type="date" min="1970-01-01" max="2008-06-11" value="<%=formattedDOB%>" name="DOB"><br/>
-                <label class="nameprofile">Phone Number</label><input class="nameprofile1" type="number" value="${sessionScope['account'].getPhone()}" name="phone"><br/>
-                <label class="nameprofile">Location 1</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getLocation1()}" name="loc1"><br/>
-                <label class="nameprofile">Location 2</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getLocation2()}" name="loc2"><br/>
+                <label class="nameprofile">Role</label><input readonly class="nameprofile1" type="text" value="<%= roleName %>" name="name"><br/>
+                <label class="nameprofile">UserStatus</label><input readonly class="nameprofile1" type="text" value="<%= userStatusName %>" name="name"><br/>
+                <label class="nameprofile">Point</label><input readonly class="nameprofile1" type="text" value="${sessionScope['account'].getPoint()}" name="name"><br/>
+                <label class="nameprofile">Date of Birth</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getDOB()}" name="name"><br/>
+                <label class="nameprofile">Phone Number</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getPhone()}" name="name"><br/>
+                <label class="nameprofile">Location 1</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getLocation1()}" name="name"><br/>
+                <label class="nameprofile">Location 2</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getLocation2()}" name="name"><br/>
                 <a href="ChangePassword.jsp" class="change-container">
                     <span class="change">Change password</span>
                 </a>
                 <input value="${sessionScope['account'].getId()}" name="id" type="hidden">
                 <p style="color: greenyellow">${mess}</p>
-                <p style="color: red">${error}</p>
                 <input style="background: #c49b63; color: white" class="editprofile" type="submit" value="Edit"> 
             </form>
         </div>

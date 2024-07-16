@@ -43,7 +43,7 @@
             <main>
                 <div class="head-title">
                     <div class="left">
-                        <h1>Invoice Manage</h1>
+                        <h1>Manage Order</h1>
                     </div>
 
                     <div>

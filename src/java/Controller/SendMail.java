@@ -17,8 +17,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.*;
 import java.util.Properties;
 import java.util.Random;
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 
 
 

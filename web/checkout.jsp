@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Invoice Gen</title>
+        <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -126,31 +126,7 @@
                                     </p>
                                 </div>
                             </div>
-                                    <p><a class="btn btn-primary py-3 px-4" onclick="showModal()">Place an order</a></p>
-
-                                    <div class="modal fade CheckOutPM" id="CheckOutPM" tabindex="-1" role="dialog" aria-labelledby="CheckOutLabel" aria-hidden="true" style="position: sticky;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" style="color: #000">Payment method: </h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div class="select-wrap">
-                                            <label>
-                                                <span style="color: #000"><input type="radio" name="pm" value="1" required>BY CASH </span>
-                                            </label><br>
-                                            <label>
-                                                <span style="color: #000"><input type="radio" name="pm" value="2" required>BY VietQR</span>
-                                            </label><br>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success" value="submit" >Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <p><input type="submit" class="btn btn-primary py-3 px-4" value="Place an order"></p>
                         </form><!-- END -->
                     </div> <!-- .col-md-8 -->
                 </div>
@@ -231,11 +207,6 @@
                 var formattedPrice = price.toFixed(3);
                 span.textContent = formattedPrice + "đ";
             });
-            function showModal() {
-                $('#CheckOutPM').modal({
-                    backdrop: false
-                });
-            }
         </script>
         <style>
             #ckOut-form-control{

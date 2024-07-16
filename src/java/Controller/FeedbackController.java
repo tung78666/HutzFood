@@ -21,27 +21,27 @@ import java.util.List;
 
 /**
  *
- * @author khailt
+ * @author DELL
  */
 public class FeedbackController extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        FeedbackDAO feedback = new FeedbackDAO();
-//        ProductDAO pdao = new ProductDAO();
-//        // lấy list feedback từ database
-//        int product_id = Integer.parseInt(request.getParameter("pid"));
-//        List<Feedback> feedbackList = feedback.getFeedbackById(product_id);
-//        request.setAttribute("feedback", feedbackList);
-//        request.setAttribute("p", pdao.getProductById(product_id));
-//        request.getRequestDispatcher("ProductDetails.jsp").forward(request, response);
-//      String mode = request.getParameter("mode"); 
-//      String id = request.getParameter("pid");
-//      int index  = Integer.parseInt(mode);
-//      request.setAttribute("index", index);
-//      request.setAttribute("pid", id);
-//      request.getRequestDispatcher("ProductDetails").forward(request, response);
+        FeedbackDAO feedback = new FeedbackDAO();
+        ProductDAO pdao = new ProductDAO();
+        // lấy list feedback từ database
+        int product_id = Integer.parseInt(request.getParameter("pid"));
+        List<Feedback> feedbackList = feedback.getFeedbackById(product_id);
+        request.setAttribute("feedback", feedbackList);
+        request.setAttribute("p", pdao.getProductById(product_id));
+        request.getRequestDispatcher("ProductDetails.jsp").forward(request, response);
+        String mode = request.getParameter("mode");
+        String id = request.getParameter("pid");
+        int index = Integer.parseInt(mode);
+        request.setAttribute("index", index);
+        request.setAttribute("pid", id);
+        request.getRequestDispatcher("ProductDetails").forward(request, response);
         this.doPost(request, response);
     }
 
@@ -65,11 +65,11 @@ public class FeedbackController extends HttpServlet {
             int userid = Integer.parseInt(request.getParameter("userid"));
             Feedback feedback1 = new Feedback(uDao.getUserById(userid), content, new Product(productid));
             feedback.addFeedback(feedback1);
-            response.sendRedirect("ProductDetails?pid=" + productid+"&mode=1");
+            response.sendRedirect("ProductDetails?pid=" + productid + "&mode=1");
         } else {
             response.sendRedirect("Login.jsp");
         }
-        
+
     }
 
     /**

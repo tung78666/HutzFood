@@ -15,8 +15,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -68,45 +66,21 @@ public class Profile extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String id = request.getParameter("id");
-        String DOB_raw = request.getParameter("DOB");
-        String phone = request.getParameter("phone");
-        String loc1 = request.getParameter("loc1");
-        String loc2 = request.getParameter("loc2");
         UserDAO udao = new UserDAO();
         HttpSession session = request.getSession();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
-        // Regular expression to check for special characters
-        String specialCharPattern = "^[^a-zA-Z0-9]*$";
-
-        // Validation
-        if (isNullOrEmpty(name) || isNullOrEmpty(phone) || isNullOrEmpty(loc1) || isNullOrEmpty(loc2)
-                || name.matches(specialCharPattern) || phone.matches(specialCharPattern)
-                || loc1.matches(specialCharPattern) || loc2.matches(specialCharPattern)) {
-            User oldU = udao.getUserById(Integer.valueOf(id));
-            session.setAttribute("account", oldU);
-            request.setAttribute("error", "Invalid input. Please ensure all fields are filled correctly.");
-            request.getRequestDispatcher("userprofile.jsp").forward(request, response);
-            return;
-        }
-
         try {
-            Date date = formatter.parse(DOB_raw);
-            User oldU = udao.getUserById(Integer.valueOf(id));
-            User newU = new User(Integer.valueOf(id), name, email, oldU.getPassword(), oldU.getRole(),
-                    oldU.getUserStatus(), oldU.getPoint(), date, phone, loc1, loc2);
-            udao.updateUser(newU);
+            udao.UpdateUser(name, Integer.valueOf(id));
+            User u = new User();
+            u.setId(Integer.valueOf(id));
+            u.setName(name);
+            u.setEmail(email);
             session.removeAttribute("account");
-            session.setAttribute("account", newU);
-            request.setAttribute("mess", "Updated Successfully");
+            session.setAttribute("account", u);
+            request.setAttribute("mess", "Updated Success");
             request.getRequestDispatcher("userprofile.jsp").forward(request, response);
         } catch (Exception e) {
             response.getWriter().println(e);
         }
-    }
-
-    private boolean isNullOrEmpty(String str) {
-        return str == null || str.trim().isEmpty();
     }
 
     /**

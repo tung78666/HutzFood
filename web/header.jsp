@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Header</title>
+        <title>Coffee</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -68,7 +68,7 @@
                         </li>
                         <li class="nav-item">
                             <c:if test="${sessionScope['account'].getRole().getId() == 1}">
-                                <a href="AdminDashbroad" class="nav-link" >MANAGER PAGE</a>
+                                <a href="AdminDashbord" class="nav-link" >MANAGER PAGE</a>
                             </c:if>
                         </li>
 
