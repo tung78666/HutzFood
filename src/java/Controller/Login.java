@@ -74,7 +74,7 @@ public class Login extends HttpServlet {
             switch (userI.getRole().getId()) {
                 case 1:
                     session.setAttribute("account", userI);
-                    response.sendRedirect("AdminDashbroad");
+                    response.sendRedirect("ManageProduct");
                     break;
                 case 2:
                     session.setAttribute("account", userI);

@@ -37,6 +37,12 @@
                 <span class="text">Register absent</span>
             </a>
         </li>
+        <li class="active">
+            <a href="ViewAbsent">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">View Absent</span>
+            </a>
+        </li>
         
         <li>
             <a href="LogOut" class="logout">

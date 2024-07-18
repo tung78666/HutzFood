@@ -72,10 +72,10 @@
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
                                         <c:if test="${sessionScope['account'].getPhone()==null}"> 
-                                            <input type="tel" id="ckOut-form-control" name="phone" class='form-control' title="Số điện thoại không hợp lệ!!" pattern="[0-9]{10}" required>
+                                            <input type="tel" id="ckOut-form-control" name="phone" class='form-control' pattern="[0-9]{10}" required>
                                         </c:if>
                                         <c:if test="${sessionScope['account'].getPhone()!=null}">
-                                            <input type="tel" value="${sessionScope['account'].getPhone()}" id="ckOut-form-control" name="phone" class='form-control' title="Số điện thoại không hợp lệ!!" pattern="[0-9]{10}" value="${sessionScope['account'].getPhone()}" required>
+                                            <input type="tel" value="${sessionScope['account'].getPhone()}" id="ckOut-form-control" name="phone" class='form-control' pattern="[0-9]{10}" value="${sessionScope['account'].getPhone()}" required>
                                         </c:if>
                                     </div>
                                 </div>

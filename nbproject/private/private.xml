@@ -2,6 +2,42 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Profile.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Login.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/AdminDashbroad.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/BlogDao.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/updateCartController.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/GetAbsentDataController.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/Footer.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/ProductSizeDao.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManagerAbsentController.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManageOrder.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/EditUserInfo.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ViewAbsent.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/cart.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Constants.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/RoleDAO.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/CartDetailController.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/AdminDAO.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/OrderDAO.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/UserDAO.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/ProductDAO.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/ViewAbsent.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/Login.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/MyOrder.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/Home.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/ManagerAbsent.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/Comfirm_Order.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/ManageOrder.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/Comfirm_Order.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/ManageProduct.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/Controller/InStoreOrder.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/headerDashbord.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/headerSeller.jsp</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/src/java/DAO/FeedbackDAO.java</file>
+            <file>file:/D:/Study/School/ISP392/Studying/Database/ISP_Group_1/FoodShop/HutzFood/web/header.jsp</file>
+        </group>
     </open-files>
 </project-private>

@@ -5,12 +5,12 @@
         <span class="text">Hutz Manage</span>
     </a>
     <ul class="side-menu top">
-        <li class="active">
+<!--        <li class="active">
             <a href="AdminDashbroad">
                 <i class='bx bxs-dashboard' ></i>
                 <span class="text">Admin Dashboard</span>
             </a>
-        </li>
+        </li>-->
 
         <li class="active">
             <a href="ManageProduct">

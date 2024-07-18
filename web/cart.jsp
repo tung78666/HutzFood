@@ -87,7 +87,7 @@
                                             <td class="quantity">
                                                 <div class="input-group mb-3">
                                                     <input type="number" name="quantity" id="${idx.index}" onchange="updateCart(${idx.index})"
-                                                           class="quantity form-control input-number" value="${i.quantity}" min="1" max="100">
+                                                           class="quantity form-control input-number" value="${i.quantity}" min="1" max="100" >
                                                 </div>
                                             </td>
                                             <td class="total"><span class="priceSpan">${i.productSize != null ? ((i.productSize.price + i.product.price) * i.quantity) : (i.product.price * i.quantity)}00</span>đ</td>
@@ -156,10 +156,10 @@
         <script src="js/google-map.js"></script>
         <script src="js/main.js"></script>
         <script type="text/javascript">
-                                                        function updateCart(i) {
-                                                            var value = $('#' + i).val();
-                                                            window.location.href = "${pageContext.request.contextPath}/updateCart?idx=" + i + "&quantity=" + value;
-                                                        }
+function updateCart(i) {
+    var value = $('#' + i).val();
+    window.location.href = "${pageContext.request.contextPath}/updateCart?idx=" + i + "&quantity=" + value;
+}
 
         </script>
         <style>

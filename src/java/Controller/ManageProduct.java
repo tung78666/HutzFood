@@ -36,20 +36,25 @@ public class ManageProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            Object object = session.getAttribute("account");
-            User u = (User) object;
-            if (u.getRole().getId() == 1) {
-                ProductDAO pdao = new ProductDAO();
-                ArrayList<Product> pl = pdao.getAllProducts("", "");
-                ArrayList<Category> clist = pdao.getCategory();
-                request.setAttribute("pl", pl);
-                request.setAttribute("clist", clist);
-                request.getRequestDispatcher("ManageProduct.jsp").forward(request, response);
+            if (session.getAttribute("account") == null) {
+                response.sendRedirect("Login.jsp");
             } else {
-                response.sendRedirect("404.html");
+                Object object = session.getAttribute("account");
+                User u = (User) object;
+                if (u.getRole().getId() == 1) {
+                    ProductDAO pdao = new ProductDAO();
+                    ArrayList<Product> pl = pdao.getAllProducts("", "");
+                    ArrayList<Category> clist = pdao.getCategory();
+                    request.setAttribute("pl", pl);
+                    request.setAttribute("clist", clist);
+                    request.getRequestDispatcher("ManageProduct.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("404.html");
+                }
             }
+
         } catch (Exception e) {
             response.sendRedirect("login");
         }

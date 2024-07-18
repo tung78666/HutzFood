@@ -124,7 +124,7 @@ public class InStoreOrder extends HttpServlet {
         String pm = request.getParameter("pm");
         List<ProductDTO> map = (List<ProductDTO>) session.getAttribute("map");
         if (map == null || map.isEmpty() || map.size() == 0) {
-            String mess = "Không có sản phẩm nào !!!";
+            String mess = "Vui lòng chọn sản phẩm";
             session.setAttribute("message", mess);
             // Redirect to the referring page
             response.sendRedirect("InStoreOrder");

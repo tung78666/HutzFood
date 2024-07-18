@@ -4,7 +4,9 @@
  */
 package Controller;
 
-import Model.ProductDTO;
+import DAO.AdminDAO;
+import Model.Absent;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,14 +14,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Ngocnl
+ * @author Ngocnlhe160359
  */
-public class CartDetailController extends HttpServlet {
+public class ViewAbsent extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,20 +35,43 @@ public class CartDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            if (session.getAttribute("account") != null) {
-                List<ProductDTO> map = (List<ProductDTO>) session.getAttribute("map");
-                double total = 0;
-                for (ProductDTO i : map) {
-                    double price = i.getProduct().getPrice() + (i.getProductSize() == null ? 0 : i.getProductSize().getPrice());
-                    total += price * i.getQuantity();
-                }
-                request.setAttribute("total", total);
-                request.getRequestDispatcher("cart.jsp").forward(request, response);
-            } else {
-                response.sendRedirect("Login.jsp");
+        AdminDAO dao = new AdminDAO();
+        HttpSession session = request.getSession();
+        if (session.getAttribute("account") != null) {
+            User u = (User) session.getAttribute("account");
+
+            // Lấy giá trị trang hiện tại từ tham số yêu cầu, nếu không có mặc định là 1
+            int page = 1;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
             }
+
+            // Tính tổng số bản ghi và tổng số trang
+            int totalRecords = dao.getTotalAbsentRecords(null, null, null);
+
+            // Lấy dữ liệu absent
+            List<Absent> absents = dao.getAbsentData(null, null, null, page); // Get the first page with no filters
+            List<Absent> absent_new = new ArrayList<>();
+            for (Absent absent : absents) {
+                System.out.println(absent.getUserId());
+                    System.out.println(u.getId());
+                if (absent.getUserId() == u.getId()) {
+                    
+                    absent_new.add(absent);
+                }
+            }
+//            System.out.println(absent_new.get(0).getUserName());
+            int totalPages = (int) Math.ceil((double) totalRecords / 6);
+            // Thiết lập các thuộc tính để chuyển đến trang JSP
+            request.setAttribute("absents", absent_new);
+            request.setAttribute("currentPage", page);
+            request.setAttribute("totalPages", totalPages);
+
+            // Chuyển hướng đến trang JSP
+            request.getRequestDispatcher("/ViewAbsent.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("Login.jsp");
+
         }
     }
 

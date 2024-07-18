@@ -24,7 +24,7 @@
                 <div class="row slider-text justify-content-center align-items-center">
                     <div class="col-md-7 col-sm-12 text-center" style="background-color: rgba(128, 128, 128, 0.5);border-radius: 8px;">
                         <h1 class="mb-3 mt-5 bread">Cảm ơn quý khách đã đặt hàng!</h1>
-                        <p class="breadcrumbs"><span class="mr-2" style="background-color: rgba(114, 22, 224,0.5);border-radius: 3px"><a href="Home" style="padding: 10px">Home</a></span></p>
+                        <p class="breadcrumbs"><span class="mr-2" style="background-color: rgba(114, 22, 224,0.5);border-radius: 3px"><a href="Home" style="padding: 10px">Confirm</a></span></p>
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center" style="padding-top: 10px">

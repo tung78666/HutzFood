@@ -38,8 +38,9 @@
     <body>
        	<footer class="ftco-footer ftco-section img">
             <div class="overlay"></div>
-            <div class="container">
-                <div class="row mb-5">
+            <div class="container" style="padding-top: 20px">
+                <hr style="border: none;height: 1px;background-color: white;"/>
+                <div class="row mb-5" style="padding: 20px">
                     <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
                         <div class="ftco-footer-widget mb-4">
                             <h2 class="ftco-heading-2"></h2>
@@ -56,11 +57,10 @@
 
                             <div class="block-23 mb-3">
                                 <ul>
-                                    <li><span class="icon icon-map-marker"></span><span class="text">Khu Giáo dục và Đào tạo – Khu Công nghệ cao Hòa Lạc – 
-                                            Km29 Đại lộ Thăng Long, Thạch Thất, TP. Hà Nội  </span></li>
-                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+84 74231 071</span></a></li>
+                                    <li><span class="icon icon-map-marker"></span><span class="text">${store.address} </span></li>
+                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">${store.phone}</span></a></li>
                                     <li><a href="#"><span class="icon icon-envelope"></span><span
-                                                class="text">nguyenlanngoc@gmail.com</span></a></li>
+                                                class="text">${store.email}</span></a></li>
                                 </ul>
                             </div>
                         </div>

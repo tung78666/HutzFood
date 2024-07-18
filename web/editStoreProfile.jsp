@@ -75,6 +75,7 @@
                     <div class="col-md-6">
                         <img src="<c:out value='${store.image}'/>" alt="Store Image" class="img-responsive" id="avatarImage" style="height:300px;width:300px;">
                         <br/>
+                        <br/>
                         <button type="button" class="btn btn-primary btn-sm" id="uploadButton">
                             
                             <i class="fa fa-upload"></i> Upload Image
