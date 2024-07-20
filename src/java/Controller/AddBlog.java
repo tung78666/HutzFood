@@ -14,10 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import java.io.File;
 
-/**
- *
- * @author Hoàng Vũ
- */
+
 @MultipartConfig(
         fileSizeThreshold = 524288,
         maxFileSize = 2097152,

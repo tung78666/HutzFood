@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Verify
-    Created on : Mar 8, 2023, 8:35:05 PM
-    Author     : Sio8 
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

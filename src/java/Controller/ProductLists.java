@@ -16,10 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-/**
- *
- * @author Hoàng Vũ
- */
 public class ProductLists extends HttpServlet {
 
     /**

@@ -9,10 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ASUS
- */
 public class BlogDao extends DBContext {
 
     public Blog getBlogByBlogId(int blogId) {

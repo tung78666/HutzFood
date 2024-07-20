@@ -13,10 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- *
- * @author Sio8
- */
 public class VerifyEmail extends HttpServlet{
 
     @Override

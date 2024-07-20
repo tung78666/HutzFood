@@ -8,10 +8,6 @@ import Model.ProductSize;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author kienb
- */
 public class ProductSizeDao extends DBContext {
 
     public ProductSize getProductSizeById(int id) {

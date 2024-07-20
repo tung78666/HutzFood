@@ -21,10 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author HC
- */
 public class AdminDashbroad extends HttpServlet {
 
     /**

@@ -22,10 +22,6 @@ import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author kienb
- */
 public class updateCartController extends HttpServlet {
 
     /**

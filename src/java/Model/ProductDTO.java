@@ -6,11 +6,6 @@ package Model;
 
 import java.util.Objects;
 
-/**
- *
- * @author kienb
- */
-
 public class ProductDTO {
     private Product product;
     private ProductSize productSize;

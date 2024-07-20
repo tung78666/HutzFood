@@ -18,10 +18,6 @@ import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- *
- * @author DELL
- */
 public class Profile extends HttpServlet {
 
     /**

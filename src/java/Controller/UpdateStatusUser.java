@@ -12,10 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author asus
- */
 public class UpdateStatusUser extends HttpServlet {
 
     /**

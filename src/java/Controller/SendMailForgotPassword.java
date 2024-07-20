@@ -4,10 +4,6 @@
  */
 package Controller;
 
-/**
- *
- * @author Sio
- */
 import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

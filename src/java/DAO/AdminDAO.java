@@ -8,10 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ASUS
- */
 public class AdminDAO extends DBContext {
 
     public Store getStoreInfor() {

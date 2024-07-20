@@ -17,10 +17,6 @@
 //import jakarta.servlet.http.HttpServletResponse;
 //import java.util.List;
 //
-///**
-// *
-// * @author DELL
-// */
 //public class settings extends HttpServlet {
 //   
 //

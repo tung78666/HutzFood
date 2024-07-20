@@ -14,10 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author asus
- */
 public class UserDAO extends DBContext {
 
     private MD5 md5 = new MD5();

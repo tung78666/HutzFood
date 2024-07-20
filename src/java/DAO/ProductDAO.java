@@ -14,10 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-/**
- *
- * @author asus
- */
 public class ProductDAO extends DBContext {
 
 //    public static void main(String[] args) {

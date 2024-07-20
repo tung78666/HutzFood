@@ -17,10 +17,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-/**
- *
- * @author kienb
- */
 public class OrderDetail extends HttpServlet {
 
     /**

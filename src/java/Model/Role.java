@@ -4,10 +4,6 @@
  */
 package Model;
 
-/**
- *
- * @author asus
- */
 public class Role {
 
     private int id;

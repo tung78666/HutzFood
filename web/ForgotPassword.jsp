@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ForgotPassword
-    Created on : May 20, 2023, 2:55:49 PM
-    Author     : asus
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- forgotpassword.jsp -->
 <!DOCTYPE html>

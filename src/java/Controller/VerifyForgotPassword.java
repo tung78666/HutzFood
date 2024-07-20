@@ -12,10 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- *
- * @author asus
- */
 @WebServlet(name = "VerifyForgotPassword", urlPatterns = {"/VerifyForgotPassword"})
 public class VerifyForgotPassword extends HttpServlet {
 

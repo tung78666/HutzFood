@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ChangePassword
-    Created on : May 21, 2023, 8:31:02 AM
-    Author     : asus
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>

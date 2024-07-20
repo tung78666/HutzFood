@@ -1,8 +1,3 @@
-<%-- 
-    Document   : ChangePassword
-    Created on : Jul 2, 2023, 9:27:34 AM
-    Author     : Hoàng Vũ
---%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
