@@ -120,9 +120,9 @@
                                     </p>
                                 </div>
                             </div>
-                                    <p><a class="btn btn-primary py-3 px-4" onclick="showModal()">Place an order</a></p>
+                                    <p><button class="btn btn-primary py-3 px-4" type="submit" name="pm" value="1">Place an order</button></p> <!--onclick="showModal()"-->
 
-                                    <div class="modal fade CheckOutPM" id="CheckOutPM" tabindex="-1" role="dialog" aria-labelledby="CheckOutLabel" aria-hidden="true" style="position: sticky;">
+<!--                            <div class="modal fade CheckOutPM" id="CheckOutPM" tabindex="-1" role="dialog" aria-labelledby="CheckOutLabel" aria-hidden="true" style="position: sticky;">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                         </form><!-- END -->
                     </div> <!-- .col-md-8 -->
@@ -180,40 +180,40 @@
         <script src="js/main.js"></script>
 
         <script>
-            $(document).ready(function () {
+                                        $(document).ready(function () {
 
-                var quantitiy = 0;
-                $('.quantity-right-plus').click(function (e) {
+                                            var quantitiy = 0;
+                                            $('.quantity-right-plus').click(function (e) {
 
-                    // Stop acting like a button
-                    e.preventDefault();
-                    // Get the field name
-                    var quantity = parseInt($('#quantity').val());
+                                                // Stop acting like a button
+                                                e.preventDefault();
+                                                // Get the field name
+                                                var quantity = parseInt($('#quantity').val());
 
-                    // If is not undefined
+                                                // If is not undefined
 
-                    $('#quantity').val(quantity + 1);
+                                                $('#quantity').val(quantity + 1);
 
 
-                    // Increment
+                                                // Increment
 
-                });
+                                            });
 
-                $('.quantity-left-minus').click(function (e) {
-                    // Stop acting like a button
-                    e.preventDefault();
-                    // Get the field name
-                    var quantity = parseInt($('#quantity').val());
+                                            $('.quantity-left-minus').click(function (e) {
+                                                // Stop acting like a button
+                                                e.preventDefault();
+                                                // Get the field name
+                                                var quantity = parseInt($('#quantity').val());
 
-                    // If is not undefined
+                                                // If is not undefined
 
-                    // Increment
-                    if (quantity > 0) {
-                        $('#quantity').val(quantity - 1);
-                    }
-                });
+                                                // Increment
+                                                if (quantity > 0) {
+                                                    $('#quantity').val(quantity - 1);
+                                                }
+                                            });
 
-            });
+                                        });
         </script>
         <script>
             var priceSpans = document.querySelectorAll(".priceSpan");
@@ -245,6 +245,12 @@
                                 border-radius: 0px;
                                 -webkit-box-shadow: none !important;
                                 box-shadow: none !important;*/
+            }
+            .select-wrap{
+                display: flex;
+                flex-direction: column;
+                padding-left: 30px;
+                padding-top: 30px;
             }
         </style>
     </body>

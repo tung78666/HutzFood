@@ -76,21 +76,21 @@
                                                 Total: <span class="total">${requestScope.total}00&nbsp;đ</span>
                                             </div>
                                             <div class="pads" >
-                                                <div class="subpads" style="display: flex;flex-direction: row;">
+                                                <form class="subpads" style="display: flex;flex-direction: row;" action="InStoreOrder" method="post">
                                                     <div class="actionpad">
-                                                        <button class="submit-order" type="submit" data-toggle="modal" data-target="#CheckOut">
+                                                        <button class="submit-order" type="submit"  name="pm" value="1"><!--data-toggle="modal" data-target="#CheckOut"-->
                                                             <a style="padding-bottom: 30px;padding-top: 30px" >Order</a>
                                                         </button>
                                                     </div>
                                                     <div class="actionpad">
                                                         <textarea style="display: flex ;width: 100%; flex-grow: 1; overflow-y: scroll" name="note" placeholder="Note..." id="note"></textarea>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                             
                                             
-                                            <div class="modal fade" id="CheckOut" role="dialog">
+<!--                                            <div class="modal fade" id="CheckOut" role="dialog">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -114,7 +114,7 @@
                                                                         </form>                            
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
                                             
                                             
                                         <!--Right pane-->
@@ -129,12 +129,12 @@
                                                             </c:forEach>
                                                     </div>
                                                     <div class="search-bar">
-                                                        <div class="input-group">
+                                                        <form class="input-group" action="InStoreOrder" method="get">
                                                             <div class="input-container">
                                                                 <i class="fa fa-search"></i>
-                                                                <input class="search-input" type="text" placeholder="Search products...">
+                                                                <input class="search-input" name="search" type="text" placeholder="Search products...">
                                                             </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                                 <div class="product-list-container">

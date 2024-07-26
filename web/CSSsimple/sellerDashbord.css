@@ -461,11 +461,24 @@ body {
 #content main .table-data .head .bx {
     cursor: pointer;
 }
+#content main .table-data .head .tail {
+    justify-content: end;
+    font-size: 10px;
+    padding: 6px 16px;
+    background-color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+    color: black;
+    
+}
+
+
 
 #content main .table-data .order {
     flex-grow: 1;
     flex-basis: 500px;
 }
+
 #content main .table-data .order table {
     width: 100%;
     border-collapse: collapse;
@@ -520,7 +533,26 @@ body {
 #content main .table-data .order table tr td .status.queue select {
     background: var(--blue);border: solid var(--blue);
 }
-
+#content main .table-data .order .pagination a{
+    color: #B43F3F;
+    text-align: center;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 1px solid #674c27;
+}
+#content main .table-data .order .pagination a.active {
+    background: #B43F3F;
+    color: #fff;
+    border: 1px solid transparent;
+}
+#content main .table-data .order .pagination a:hover:not(.active) {
+    background: #FF8225;
+    color: #fff;
+    border: 1px solid transparent;
+}
 
 #content main .table-data .todo {
     flex-grow: 1;

@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.*;
 import java.util.Properties;
 import java.util.Random;
-import javax.mail.*;
-import javax.mail.internet.*;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 
 public class SendMailForgotPassword extends HttpServlet {
 

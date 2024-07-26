@@ -73,8 +73,19 @@ public class InStoreOrder extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        String search = request.getParameter("search");
         ProductDAO pDao = new ProductDAO();
         ArrayList<Product> p = pDao.getAll();
+        ArrayList<Product> plist = new ArrayList<>();
+        if(search!=null && !search.isBlank()){
+            for (Product product : p) {
+                if(product.getName().trim().toLowerCase().contains(search.trim().toLowerCase())){
+                    plist.add(product);
+                }
+            }
+        }else{
+            plist=p;
+        }
         ArrayList<Category> c = pDao.getCategory();
         ArrayList<ProductSize> slist = pDao.getProductSize();
         HttpSession session = request.getSession();
@@ -101,7 +112,7 @@ public class InStoreOrder extends HttpServlet {
             }
             request.setAttribute("total", total);
         }
-        request.setAttribute("pList", p);
+        request.setAttribute("pList", plist);
         request.setAttribute("cList", c);
         request.setAttribute("slist", slist);
         request.getRequestDispatcher("InStore_Order.jsp").forward(request, response);
