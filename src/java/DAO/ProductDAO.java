@@ -27,7 +27,6 @@ public class ProductDAO extends DBContext {
 //        }
 //
 //    }
-
     public ArrayList<Product> getProduct(String cid, String search, int index, String sort) {
         String sortby = "";
         switch (sort) {
@@ -142,6 +141,34 @@ public class ProductDAO extends DBContext {
                         rs.getDate(8)));
             }
         } catch (SQLException e) {
+        }
+        return list;
+    }
+
+    public ArrayList<Product> getProductByName(String search, int index) {
+        ArrayList<Product> list = new ArrayList<>();
+        String sql = "SELECT * FROM [Product] p, Category c, ProductStatus ps "
+                + "WHERE p.category_id = c.category_id AND p.PdStatus_id = ps.PdStatus_id "
+                + "AND p.PdStatus_id = 1 AND p.product_name LIKE ? "
+                + "OFFSET ? ROWS FETCH NEXT 8 ROWS ONLY";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            ps.setInt(2, (index - 1) * 6);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getDouble(3),
+                        rs.getString(5),
+                        new Category(rs.getInt(9), rs.getString(10)),
+                        rs.getString(6),
+                        new ProductStatus(rs.getInt(11), rs.getString(12)),
+                        rs.getDate(8)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Consider proper error handling/logging
         }
         return list;
     }
@@ -366,7 +393,6 @@ public class ProductDAO extends DBContext {
                 + "FROM Product p\n"
                 + "JOIN Category c ON p.category_id = c.category_id\n"
                 + "JOIN ProductStatus ps ON p.PdStatus_id = ps.PdStatus_id\n"
-                
                 + "WHERE p.create_date BETWEEN ? AND ? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -388,7 +414,7 @@ public class ProductDAO extends DBContext {
 
             }
         } catch (SQLException e) {
-           
+
         }
         return list;
     }

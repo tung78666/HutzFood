@@ -99,7 +99,11 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             } else {
                 index = Integer.parseInt(currentPage);
             }
-            ArrayList<Product> plist = pdao.getProduct(categoryId, search, index, sort);
+            ArrayList<Product> plist = new ArrayList<>();
+            if(categoryId=="" && sort=="" && search!=""){
+                plist=pdao.getProductByName(search, index);
+            }
+            plist = pdao.getProduct(categoryId, search, index, sort);
             request.setAttribute("numberPage", numberPage);
             request.setAttribute("plist", plist);
             request.setAttribute("clist", clist);
