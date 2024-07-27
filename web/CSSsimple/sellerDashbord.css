@@ -501,15 +501,24 @@ body {
     border-radius: 20px;
     font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
-    background: var(--blue);
-}
 #content main .table-data .order table tr td .status.process {
     background: var(--yellow);
     color: saddlebrown;
 }
 #content main .table-data .order table tr td .status.pending {
     background: var(--orange);
+}
+#content main .table-data .order table tr td .status.queue  {
+    background: var(--blue);
+}
+#content main .table-data .order table tr td .status.process select {
+    background: var(--yellow);border: solid var(--yellow);
+}
+#content main .table-data .order table tr td .status.pending select {
+    background: var(--orange);border: solid var(--orange);
+}
+#content main .table-data .order table tr td .status.queue select {
+    background: var(--blue);border: solid var(--blue);
 }
 
 

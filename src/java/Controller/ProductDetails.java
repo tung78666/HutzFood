@@ -17,10 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author asus
- */
 public class ProductDetails extends HttpServlet {
 
     /**

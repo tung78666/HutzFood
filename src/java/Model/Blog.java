@@ -6,10 +6,6 @@ package Model;
 
 import java.sql.Date;
 
-/**
- *
- * @author ASUS
- */
 public class Blog {
 
     private int blog_id;

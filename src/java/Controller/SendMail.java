@@ -4,10 +4,6 @@
  */
 package Controller;
 
-/**
- *
- * @author Sio
- */
 import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -17,8 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.*;
 import java.util.Properties;
 import java.util.Random;
-import javax.mail.*;
-import javax.mail.internet.*;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 
 
 

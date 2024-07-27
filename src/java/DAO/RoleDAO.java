@@ -26,8 +26,27 @@ public class RoleDAO extends DBContext {
 
         return list;
     }
-    
-     public ArrayList<Role> getAllById() {
+
+    public Role getRoleById(int roleId) {
+        Role role = null;
+        String sql = "SELECT role_id, role_name FROM Roles WHERE role_id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, roleId);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                role = new Role(rs.getInt("role_id"), rs.getString("role_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return role;
+    }
+
+    public ArrayList<Role> getAllById() {
         ArrayList<Role> list = new ArrayList<>();
         String sql = "select * from [Roles]"
                 + "WHERE role_id = 2 OR role_id = 3";
@@ -45,9 +64,6 @@ public class RoleDAO extends DBContext {
 
         return list;
     }
-    
-    
-    
 
     // Update role name by Id, set Permissions to role
     public void updateRoleById(int id, String name, List<Integer> permissions) {
@@ -102,23 +118,23 @@ public class RoleDAO extends DBContext {
             e.printStackTrace();
         }
     }
-    
+
     public boolean isCan(int roleId, int permissionId) {
         String sql = "select * from [RolePermissions] where roleId = ? and permissionId = ?";
-        
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, roleId);
             st.setInt(2, permissionId);
             ResultSet rs = st.executeQuery();
-            
+
             if (rs.next()) {
                 return true;
             }
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return false;
     }
 }

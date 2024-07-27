@@ -1,15 +1,9 @@
-<%-- 
-    Document   : Verify
-    Created on : Mar 8, 2023, 8:35:05 PM
-    Author     : Sio8 
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Coffee shop</title>
+        <title>OTP verify</title>
     </head>
     <style>
         body {

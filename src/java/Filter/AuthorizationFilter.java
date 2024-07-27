@@ -18,10 +18,6 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-/**
- *
- * @author HC
- */
 public class AuthorizationFilter implements Filter {
 
     @Override
@@ -43,12 +39,13 @@ public class AuthorizationFilter implements Filter {
             switch (user.getRole().getId()) {
                 case 1:
                     if (servletPath.equals("/UsersList")
+                            || servletPath.equals("/ManageUserInfo")
                             || servletPath.equals("/UserDetails")
                             || servletPath.equals("/SettingList")
                             || servletPath.equals("/SettingDetails")
                             || servletPath.equals("/ProductsList")
                             || servletPath.equals("/ProductDetails")
-                            || servletPath.equals("/AdminDashbord")) {
+                            || servletPath.equals("/AdminDashbroad")) {
                         chain.doFilter(request, response);
                     }
                     break;

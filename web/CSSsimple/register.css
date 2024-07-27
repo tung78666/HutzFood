@@ -96,3 +96,15 @@ body{
     text-decoration: underline;
     color: orange; 
 }
+
+.DOBlabel {
+  display: block;
+}
+
+#MoveInDate{
+  font-family: 'Roboto', sans-serif;
+  border: solid 1px #89a6bb;
+  padding: 0.5rem;
+  border-radius: 3px;
+  -webkit-appearance: none;
+}

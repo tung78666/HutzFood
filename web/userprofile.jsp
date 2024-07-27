@@ -1,142 +1,183 @@
-<%-- 
-    Document   : userprofile
-    Created on : May 27, 2023, 7:01:46 AM
-    Author     : DELL
---%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="Model.User" %>
+<%@ page import="Model.Role" %>
+<%@ page import="Model.UserStatus" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%
+    // Assuming 'account' is a User object stored in the session scope
+    User account = (User) session.getAttribute("account");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String formattedDOB = "";
+    if (account != null && account.getDOB() != null) {
+        formattedDOB =dateFormat.format(account.getDOB());
+    }
+
+    // Get the user from the session
+    User user = (User) session.getAttribute("account");
+
+    // Initialize roleName and userStatusName
+    String roleName = "";
+    String userStatusName = "";
+
+    // Check if user is not null
+    if (user != null) {
+
+        Role role = user.getRole();
+        UserStatus userStatus = user.getUserStatus();
+
+        // Get the names
+        if (role != null) {
+            roleName = role.getName();
+        }
+        if (userStatus != null) {
+            userStatusName = userStatus.getName();
+        }
+    }
+%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="CSSsample/userProfile.css">
-        <style>
 
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="images/favicon.png" type="">
 
-            /* Add some styling to the header */
-            header {
-                background-color: #333;
-                color: #fff;
-                padding: 10px;
-                text-align: center;
-            }
+    <title> HUTZ FOOD </title>
 
-            /* Add some styling to the form container */
-            .ipform {
-                margin: 100px auto;
-                max-width: 600px;
-                padding: 20px;
-                border: 1px solid #ccc;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="themes/css/bootstrap.css" />
 
-            /* Style the form elements */
-            form {
-                display: flex;
-                flex-direction: column;
-            }
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+        crossorigin="anonymous" />
+    <!-- font awesome style -->
+    <link href="themes/css/font-awesome.min.css" rel="stylesheet" />
 
-            h3 {
-                text-align: center;
-                margin-bottom: 20px;
-            }
+    <!-- Custom styles for this template -->
+    <link href="themes/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="themes/css/responsive.css" rel="stylesheet" />
 
-            label {
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
+</head>
 
-            input[type="text"],
-            input[type="email"] {
-                padding: 8px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
+<body class="sub_page">
 
-            
+    <div class="hero_area">
+        <div class="bg-box">
+            <img src="themes/images/hero-bg.jpg" alt="">
+        </div>
+        <!-- start header section -->
+        <jsp:include page="header.jsp"/>  
+        <!-- end header section -->
+    </div>
 
-            .change {
-                color: #fff;
-                font-size: 18px;
-                font-weight: normal; /* Adjust the font weight as needed */
-                text-decoration: none;
-                margin-left: 350px;
-            }
-
-            .change:hover {
-                text-decoration: underline;
-            }
-
-
-            .editprofile {
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            .editprofile:hover {
-                background-color: #0056b3;
-            }
-
-            p {
-                color: #d50000; /* Red color for error messages */
-                margin-bottom: 10px;
-            }
-
-            /* Add some styling to the footer */
-            footer {
-                background-color: #333;
-                color: #fff;
-                padding: 10px;
-                text-align: center;
-            }
-
-        </style>
-    </head>
-    <body>
-        <jsp:include page="header.jsp"/>
-        <div style="margin-top: 200px; margin-left: 462px" class="ipform">
-
-            <form method="post" action="Profile" >
-                <h3>My Profile</h3>
-                <label class="nameprofile">Name</label><input class="nameprofile1" type="text" value="${sessionScope['account'].getName()}" name="name"><br/>
-                <label class="emailprofile">Email</label><input readonly class="emailprofile1" value="${sessionScope['account'].getEmail()}" name="email"><br/>
+    <!-- book section -->
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    My Profile
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form_container">
+                        <p style="color: greenyellow">${mess}</p>
+                        <p style="color: red">${error}</p>
+                        <form method="post" action="Profile">
+                            <input value="${sessionScope['account'].getId()}" name="id" type="hidden">
+                            <div>
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" value="${sessionScope['account'].getName()}" />
+                            </div>
+                            <div>
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" value="${sessionScope['account'].getEmail()}" readonly />
+                            </div>
+                            <div>
+                                <label class="form-label">Role</label>
+                                <input type="text" class="form-control" value="<%= roleName %>" readonly />
+                            </div>
+                            <div>
+                                <label class="form-label">UserStatus</label>
+                                <input type="text" class="form-control" value="<%= userStatusName %>" readonly />
+                            </div>
+                            <div>
+                                <label class="form-label">Point</label>
+                                <input type="text" class="form-control"value="${sessionScope['account'].getPoint()}" readonly />
+                            </div>
+                            <div>
+                                <label class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" name="DOB" placeholder="MM-DD-yyyy" min="1970-01-01" max="2008-06-11" value="<%=formattedDOB%>" />
+                            </div>
+                            <div>
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" name="phone" value="${sessionScope['account'].getPhone()}" />
+                            </div>
+                            <div>
+                                <label class="form-label">Location 1</label>
+                                <input type="text" class="form-control" name="loc1" value="${sessionScope['account'].getLocation1()}" />
+                            </div>
+                            <div>
+                                <label class="form-label">Location 2</label>
+                                <input type="text" class="form-control" name="loc2" value="${sessionScope['account'].getLocation2()}" />
+                            </div>
+                            <div type="submit" class="btn_box">
+                                <button>
+                                    Edit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <a href="ChangePassword.jsp" class="change-container">
                     <span class="change">Change password</span>
                 </a>
-                <input value="${sessionScope['account'].getId()}" name="id" type="hidden">
-                <p style="color: greenyellow">${mess}</p>
-                <input style="background: #c49b63; color: white" class="editprofile" type="submit" value="Edit"> 
-            </form>
+            </div>
         </div>
-        <div style="margin-bottom: 100px"></div>
-        <jsp:include page="Footer.jsp"/>
+    </section>
+    <!-- end book section -->
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/jquery.stellar.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/jquery.animateNumber.min.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script src="js/jquery.timepicker.min.js"></script>
-        <script src="js/scrollax.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="js/google-map.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+    <!-- footer section -->
+    <jsp:include page="Footer.jsp"/>   
+    <!-- footer section -->
+
+    <!-- jQery -->
+    <script src="themes/js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+    <!-- bootstrap js -->
+    <script src="themes/js/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+    <!-- nice select -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+    <!-- custom js -->
+    <script src="themes/js/custom.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+    </script>
+    <!-- End Google Map -->
+
+</body>
+
 </html>

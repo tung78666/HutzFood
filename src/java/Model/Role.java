@@ -4,13 +4,13 @@
  */
 package Model;
 
-/**
- *
- * @author asus
- */
 public class Role {
-     private int id;
+
+    private int id;
     private String name;
+
+    public Role() {
+    }
 
     public Role(int id, String name) {
         this.id = id;
@@ -20,8 +20,6 @@ public class Role {
     public Role(String name) {
         this.name = name;
     }
-    
-    
 
     public Role(int id) {
         this.id = id;

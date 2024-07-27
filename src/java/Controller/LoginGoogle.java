@@ -30,7 +30,7 @@ import org.apache.http.client.fluent.Form;
 //import org.apache.http.client.HttpResponseException;
 /**
  *
- * @author Dan09
+ * @author ducnt
  */
 public class LoginGoogle extends HttpServlet {
 
@@ -77,6 +77,7 @@ public class LoginGoogle extends HttpServlet {
             }
         } else {
             System.out.println("User verification failed: " + user);
+            request.setAttribute("mess", "User not existed!!!");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
     }

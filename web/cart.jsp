@@ -1,186 +1,174 @@
-<%-- 
-    Document   : cart
-    Created on : Jun 8, 2023, 10:34:00 PM
-    Author     : kienb
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-    <head>
-        <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="themes/images/favicon.png" type="">
 
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <title> HUTZ FOOD </title>
 
-        <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-        <link rel="stylesheet" href="css/animate.css">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="themes/css/bootstrap.css" />
 
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+        crossorigin="anonymous" />
+    <!-- font awesome style -->
+    <link href="themes/css/font-awesome.min.css" rel="stylesheet" />
 
-        <link rel="stylesheet" href="css/aos.css">
+    <!-- Custom styles for this template -->
+    <link href="themes/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="themes/css/responsive.css" rel="stylesheet" />
 
-        <link rel="stylesheet" href="css/ionicons.min.css">
+</head>
 
-        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-        <link rel="stylesheet" href="css/jquery.timepicker.css">
+<body class="sub_page">
 
+    <div class="hero_area">
+        <div class="bg-box">
+            <img src="themes/images/hero-bg.jpg" alt="">
+        </div>
+        <!-- start header section -->
+        <jsp:include page="header.jsp"/>  
+        <!-- end header section -->
+    </div>
 
-        <link rel="stylesheet" href="css/flaticon.css">
-        <link rel="stylesheet" href="css/icomoon.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-
-    <body>
-        <jsp:include page="header.jsp"/> 
-        <section class="ftco-section ftco-cart" id="cartCont">
-            <div class="container">
-                <div class="row" id="cartTable">
-                    <div class="col-md-12 ftco-animate">
-                        <div id="cartHeader">
-                            <div class="text-center ftco-animate">
-                                <tr>
-                                <h1 class="bread" style="padding-top: 10px">Cart</h1>
-                                </tr>
-                                <tr>
-                                <p class="breadcrumbs"><span class=""><a href="Home">Home</a></span><span> < Cart</span>
-                                </p>
-                                </tr>
-                            </div>
+    <!-- book section -->
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>
+                    Cart
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${sessionScope.map}" var="i" varStatus="idx">
+                            <tr>
+                                <td style="vertical-align: middle;">
+                                    <img src="${i.product.image}" class="rounded float-left" style="width: 75px;">
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    ${i.product.name}
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    ${i.productSize != null ? i.productSize.name : ''}
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    ${i.productSize != null ? i.productSize.price + i.product.price : i.product.price}00đ
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <input type="number" class="form-control form-control-sm" name="quantity" id="${idx.index}" onchange="updateCart(${idx.index})"
+                                                           class="quantity form-control input-number" value="${i.quantity}" min="1" max="100" />
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    ${i.productSize != null ? ((i.productSize.price + i.product.price) * i.quantity) : (i.product.price * i.quantity)}00đ
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <a href="./deleteProduct?idx=${idx.index}">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            Totals Amount
                         </div>
-                        <div class="cart-list">
-                            <table class="table">
-                                <thead class="thead-primary">
-                                    <tr class="text-center">
-                                        <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
-                                        <th>Product</th>
-                                        <th>Size</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${sessionScope.map}" var="i" varStatus="idx">
-                                        <tr class="text-center">
-                                            <td class="product-remove"><a href="deleteProduct?idx=${idx.index}"><span class="icon-close"></span></a></td>
-
-                                            <td class="image-prod">
-                                                <div class="img" style="background-image:url(${i.product.image});"></div>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <h3>${i.product.name}</h3>
-                                            </td>
-                                            <td style="color: white">${i.productSize != null ? i.productSize.name : ''}</td>
-                                            <td class="price"><span class="priceSpan">$ ${i.productSize != null ? i.productSize.price + i.product.price : i.product.price}00</span></td>
-
-                                            <td class="quantity">
-                                                <div class="input-group mb-3">
-                                                    <input type="number" name="quantity" id="${idx.index}" onchange="updateCart(${idx.index})"
-                                                           class="quantity form-control input-number" value="${i.quantity}" min="1" max="100">
-                                                </div>
-                                            </td>
-                                            <td class="total"><span class="priceSpan">${i.productSize != null ? ((i.productSize.price + i.product.price) * i.quantity) : (i.product.price * i.quantity)}00</span>đ</td>
+                        <div class="card-body">
+                            <form id="myForm" action="order" method="get">
+                                <table style="width: 100%;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 70%;">Total</td>
+                                            <td style="width: 30%;">${requestScope.total}00đ</td>
                                         </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                                        <tr>
+                                            <td style="width: 70%;">Use Points</td>
+                                            <td style="width: 30%;">
+                                                <c:if test="${sessionScope['account'].getPoint() == 0}">
+                                                    <input type="number" disabled name="discount" value="0" style="width: 100%; cursor: pointer;" /> 
+                                                </c:if>
+                                                <c:if test="${sessionScope['account'].getPoint() != 0}">
+                                                    <input type="number" min="0" max="${sessionScope.account.getPoint()}" value="0" name="discount" style="width: 100%; cursor: pointer;" /> 
+                                                </c:if>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" form="myForm" value="Checkout" class="btn btn-block" style="background-color: #e69c00; color: white;">
                         </div>
                     </div>
                 </div>
-                <p style="color: red" >${mess}</p>
-                <form action="order" method="get">
-                    <div class="row justify-content-end" >
-                        <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate" id="checkOut4Cart">
-                            <div class="cart-total mb-3">
-                                <h3 id="headingcO">Totals Amount</h3>
-                                <p class="d-flex total-price">
-                                    <span>Total</span>
-                                    <span class="priceSpan">${requestScope.total}00đ</span>
-                                </p>
-                                <label class="labelRemem" >
-                                    <c:if test="${sessionScope['account'].getPoint() == 0}">
-                                        <input type="number" disabled name="discount" value="0" style="cursor: pointer;" /> 
-                                    </c:if>
-                                    <c:if test="${sessionScope['account'].getPoint() != 0}">
-                                        <input type="number" min="0" max="${sessionScope.account.getPoint()}" value="0" name="discount"style="cursor: pointer;" /> 
-                                    </c:if>
-                                    <a style="cursor: pointer;" ${sessionScope.account.getPoint() eq 0 ?'disabled':''}>Use Points</a>
-                                </label>
-                            </div>
-                            <!--order-->
-                            <p class="text-center"><input type="submit" class="btn btn-primary py-3 px-4" value="Proceed to
-                                    Checkout"/></p>
-                        </div>
-                    </div>
-                </form>
             </div>
-        </section>
+        </div>
+    </section>
+    <!-- end book section -->
 
-        <jsp:include page="Footer.jsp"/>    
+    <!-- footer section -->
+    <jsp:include page="Footer.jsp"/>   
+    <!-- footer section -->
 
-        <!-- loader -->
-        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                    stroke="#F96D00" />
-            </svg></div>
-
-
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/jquery.stellar.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/jquery.animateNumber.min.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script src="js/jquery.timepicker.min.js"></script>
-        <script src="js/scrollax.min.js"></script>
-        <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="js/google-map.js"></script>
-        <script src="js/main.js"></script>
-        <script type="text/javascript">
-                                                        function updateCart(i) {
-                                                            var value = $('#' + i).val();
-                                                            window.location.href = "${pageContext.request.contextPath}/updateCart?idx=" + i + "&quantity=" + value;
-                                                        }
-
+    <!-- jQery -->
+    <script src="themes/js/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
         </script>
-        <style>
-            #cartCont{
-                padding-top: 100px;
-            }
-            #cartHeader{
-                display: flex;
-                justify-content: center;
-            }
-            #checkOut4Cart{
-                background-color: rgba(128, 128, 128, 0.5);
-                border-radius: 8px;
-            }
-            #headingcO{
-                padding-top: 10px;
-            }
-            #cartTable{
-                background-color: rgba(128, 128, 128, 0.5);
-                border-radius: 5px;
-            }
-        </style>
-    </body>
+    <!-- bootstrap js -->
+    <script src="themes/js/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+    <!-- nice select -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+    <!-- custom js -->
+    <script src="themes/js/custom.js"></script>
+    <script type="text/javascript">
+        function updateCart(i) {
+            var value = $('#' + i).val();
+            window.location.href = "${pageContext.request.contextPath}/updateCart?idx=" + i + "&quantity=" + value;
+        }
+    </script>
+
+</body>
 
 </html>

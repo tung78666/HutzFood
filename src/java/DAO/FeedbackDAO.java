@@ -13,10 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author DELL
- */
 public class FeedbackDAO extends DBContext {
 
     public List<Feedback> getFeedbackById(int product_id) {
